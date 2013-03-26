@@ -1,3 +1,3 @@
 man svn clinent tortoisesvn http://tortoisesvn.net/docs/release/TortoiseSVN_ru/tsvn-qs-guide.html
-хабр. работа с svn. много полезных ссылок. http://habrahabr.ru/post/125799/
-быстрый курс по работе с git githowto http://githowto.com/
+РЎС‚Р°С‚СЊСЏ РѕР± РёРЅСЃС‚СЂСѓРјРµРЅС‚Р°С… Рё РЅР°С‡Р°Р»Рµ СЂР°Р±РѕС‚С‹ СЃ git "РљР°Рє РЅР°С‡Р°С‚СЊ СЂР°Р±РѕС‚Р°С‚СЊ СЃ GitHub: Р±С‹СЃС‚СЂС‹Р№ СЃС‚Р°СЂС‚" http://habrahabr.ru/post/125799/
+РњРѕР»РЅРµРµРЅРѕСЃРЅРѕ СѓС‡РёРјСЃСЏ СЂР°Р±РѕС‚Р°С‚СЊ СЃ git http://githowto.com/
