@@ -16,8 +16,6 @@ CaptureOpenCv::CaptureOpenCv(VarList * _settings)
 
     mIndex = new VarString("Camera index");
     mCaptureSettings->addChild(mIndex);
-
-	printf("We work with OpenCv, init USB-cam\n");
 }
 
 CaptureOpenCv::~CaptureOpenCv()
@@ -27,7 +25,7 @@ CaptureOpenCv::~CaptureOpenCv()
 RawImage CaptureOpenCv::getFrame()
 {
     mutex.lock();
-    //RawImage result;
+    RawImage result;
     result.setTime(0.0);
 
     if (!mCapture.grab()) {

@@ -32,12 +32,12 @@ win32 {
   }
 
   #messages defined through google protocol buffers (as compiled by protoc)
-  LIST = $$system(dir /B cpp\*.pb.cc)
+  LIST = $$system(dir /B cpp\\*.pb.cc)
   for(item, LIST) {
     SOURCES += $${SHARED_DIR}/proto/cpp/$${item}
   }
 
-  LIST = $$system(dir /B cpp\*.pb.h)
+  LIST = $$system(dir /B cpp\\*.pb.h)
   for(item, LIST) {
     HEADERS += $${SHARED_DIR}/proto/cpp/$${item}
   }

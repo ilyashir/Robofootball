@@ -75,7 +75,7 @@ class GlobalCaptureDC1394instance
     if (counter == 0) {
       dc_instance=dc1394_new();
       if (dc_instance == NULL)
-        fprintf(stderr,"Om.. libdc1394 camera API is not supported on Windows\n");
+        fprintf(stderr,"WARNING: libdc1394 camera API is not supported on Windows!\n");
     }
     counter++;
     dc1394_t* inst=dc_instance;

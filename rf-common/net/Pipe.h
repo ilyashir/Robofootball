@@ -46,7 +46,7 @@ public:
 	}
 	int Write(char * Buffer,DWORD * cbBytes,size_t BufferSize=0)
 	{
-		//Sleep(1);//sorry
+		Sleep(1);//sorry
 		if (BufferSize==0) 
 		{
 			BufferSize=MessageSize;
@@ -87,7 +87,7 @@ public:
 	}
 	int Read(char * Buffer,DWORD * cbBytes,size_t BufferSize=0)
 	{
-		//Sleep(1);//sorry =(
+		Sleep(1);//sorry =(
 		if (BufferSize==0) 
 		{
 			BufferSize=MessageSize;
@@ -140,15 +140,13 @@ public:
 	int Recv(char * Buffer,size_t BufferSize=0)
 	{
 		int re;	
-		while ((re=Read(Buffer,BufferSize))==ERROR_IO_PENDING) 
-			Sleep(1);
+		while ((re=Read(Buffer,BufferSize))==ERROR_IO_PENDING);
 		return re;
 	}
 	bool Send(char * Buffer,size_t BufferSize=0)
 	{
 		int re;	
-		while ((re=Write(Buffer,BufferSize))==ERROR_IO_PENDING)
-			Sleep(1);
+		while ((re=Write(Buffer,BufferSize))==ERROR_IO_PENDING);
 		return re;
 	}
 };

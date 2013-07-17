@@ -18,7 +18,9 @@ else {
 }
 
 SHARED_DIR = ../rf-common
-DESTDIR = ../rf_bin$${SUFFIX_STR}
+LIB_DIR = ../lib
+DESTDIR = ../bin$${SUFFIX_STR}
+MATLAB_DIR = C:/MATLAB/R2009b/extern
 
 unix {
   DEFINES+=UNIX
@@ -55,7 +57,9 @@ win32 {
 }
 
 #protobuf
-include( rf-common/proto/proto.pro.inc )
-
+#include( $${SHARED_DIR}/proto/proto.pro.inc )
+#include( D:/RF/sslvision_win32_r188/src/shared/proto/proto.pro.inc )
+include( D:/RF/rf-client/rf-common/proto/proto.pro.inc )
+#include( C:/Robofootball/prog/rf-client/rf-common/proto/proto.pro.inc )
 
 OTHER_FILES +=

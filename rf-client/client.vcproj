@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Visual C++"
+	Version="9,00"
+	Name="client"
+	ProjectGUID="{6878A95B-72DC-39B9-A3FC-0D0AAC836F3F}"
+	Keyword="Qt4VSv1.0">
+	<Platforms>
+		<Platform
+			Name="Win32" />
+	</Platforms>
+	<Configurations>
+		<Configuration
+			Name="Debug|Win32"
+			OutputDirectory="..\..\bind\"
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			ConfigurationType="1"
+			IntermediateDirectory="..\..\build\client\objd\"
+			UseOfMfc="0">
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalIncludeDirectories="&quot;c:\QtSDK\Desktop\Qt\4.8.0\msvc2008\include\QtCore&quot;,&quot;c:\QtSDK\Desktop\Qt\4.8.0\msvc2008\include\QtGui&quot;,&quot;c:\QtSDK\Desktop\Qt\4.8.0\msvc2008\include&quot;,&quot;..\..\inc&quot;,&quot;..\shared\net&quot;,&quot;..\shared\proto\cpp&quot;,&quot;..\shared\util&quot;,&quot;c:\QtSDK\Desktop\Qt\4.8.0\msvc2008\include\ActiveQt&quot;,&quot;..\..\build\client\moc&quot;,c:\QtSDK\Desktop\Qt\4.8.0\msvc2008\mkspecs\default"
+				AdditionalOptions="-Zm200 -w34100 -w34189"
+				AssemblerListingLocation="..\..\build\client\objd\"
+				BufferSecurityCheck="false"
+				DebugInformationFormat="3"
+				DisableSpecificWarnings="4250"
+				EnableEnhancedInstructionSet="2"
+				ExceptionHandling="1"
+				GeneratePreprocessedFile="0"
+				ObjectFile="..\..\build\client\objd\"
+				Optimization ="4"
+				PreprocessorDefinitions="_CONSOLE,UNICODE,WIN32,QT_LARGEFILE_SUPPORT,_CRT_SECURE_NO_WARNINGS,WIN32_LEAN_AND_MEAN,NOMINMAX,QT_THREAD_SUPPORT,QT_DLL,QT_GUI_LIB,QT_CORE_LIB,QT_HAVE_MMX,QT_HAVE_3DNOW,QT_HAVE_SSE,QT_HAVE_MMXEXT,QT_HAVE_SSE2"
+				ProgramDataBaseFileName="$(IntDir)"
+				RuntimeLibrary="3"
+				RuntimeTypeInfo="true"
+				SuppressStartupBanner="true"
+				TreatWChar_tAsBuiltInType="false"
+				WarningLevel="3" />
+			<Tool
+				Name="VCCustomBuildTool" />
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="../../lib/libprotobufd.lib ws2_32.lib c:\QtSDK\Desktop\Qt\4.8.0\msvc2008\lib\QtGuid4.lib c:\QtSDK\Desktop\Qt\4.8.0\msvc2008\lib\QtCored4.lib"
+				AdditionalLibraryDirectories="c:\QtSDK\Desktop\Qt\4.8.0\msvc2008\lib"
+				AdditionalOptions="&quot;/MANIFESTDEPENDENCY:type=&apos;win32&apos; name=&apos;Microsoft.Windows.Common-Controls&apos; version=&apos;6.0.0.0&apos; publicKeyToken=&apos;6595b64144ccf1df&apos; language=&apos;*&apos; processorArchitecture=&apos;*&apos;&quot;"
+				GenerateDebugInformation="true"
+				IgnoreImportLibrary="true"
+				LinkTimeCodeGeneration="0"
+				OutputFile="$(OutDir)\client.exe"
+				ProgramDatabaseFile=""
+				SubSystem="1"
+				SuppressStartupBanner="true" />
+			<Tool
+				Name="VCMIDLTool"
+				DefaultCharType="0"
+				EnableErrorChecks="1"
+				WarningLevel="0" />
+			<Tool
+				Name="VCPostBuildEventTool" />
+			<Tool
+				Name="VCPreBuildEventTool" />
+			<Tool
+				Name="VCPreLinkEventTool" />
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="_CONSOLE,UNICODE,WIN32,QT_LARGEFILE_SUPPORT,_CRT_SECURE_NO_WARNINGS,WIN32_LEAN_AND_MEAN,NOMINMAX,QT_THREAD_SUPPORT,QT_DLL,QT_GUI_LIB,QT_CORE_LIB,QT_HAVE_MMX,QT_HAVE_3DNOW,QT_HAVE_SSE,QT_HAVE_MMXEXT,QT_HAVE_SSE2,_DEBUG" />
+		</Configuration>
+		<Configuration
+			Name="Release|Win32"
+			OutputDirectory="..\..\bin\"
+			ATLMinimizesCRunTimeLibraryUsage="false"
+			ConfigurationType="1"
+			IntermediateDirectory="..\..\build\client\obj\"
+			UseOfMfc="0">
+			<Tool
+				Name="VCCLCompilerTool"
+				AdditionalIncludeDirectories="&quot;c:\QtSDK\Desktop\Qt\4.8.0\msvc2008\include\QtCore&quot;,&quot;c:\QtSDK\Desktop\Qt\4.8.0\msvc2008\include\QtGui&quot;,&quot;c:\QtSDK\Desktop\Qt\4.8.0\msvc2008\include&quot;,&quot;..\..\inc&quot;,&quot;..\shared\net&quot;,&quot;..\shared\proto\cpp&quot;,&quot;..\shared\util&quot;,&quot;c:\QtSDK\Desktop\Qt\4.8.0\msvc2008\include\ActiveQt&quot;,&quot;..\..\build\client\moc&quot;,c:\QtSDK\Desktop\Qt\4.8.0\msvc2008\mkspecs\default"
+				AdditionalOptions="-Zm200 -w34100 -w34189"
+				AssemblerListingLocation="..\..\build\client\obj\"
+				BufferSecurityCheck="false"
+				DebugInformationFormat="0"
+				DisableSpecificWarnings="4250"
+				EnableEnhancedInstructionSet="2"
+				ExceptionHandling="1"
+				GeneratePreprocessedFile="0"
+				ObjectFile="..\..\build\client\obj\"
+				Optimization ="2"
+				PreprocessorDefinitions="_CONSOLE,UNICODE,WIN32,QT_LARGEFILE_SUPPORT,_CRT_SECURE_NO_WARNINGS,WIN32_LEAN_AND_MEAN,NOMINMAX,QT_THREAD_SUPPORT,QT_DLL,QT_NO_DEBUG,QT_GUI_LIB,QT_CORE_LIB,QT_HAVE_MMX,QT_HAVE_3DNOW,QT_HAVE_SSE,QT_HAVE_MMXEXT,QT_HAVE_SSE2,NDEBUG"
+				ProgramDataBaseFileName="$(IntDir)"
+				RuntimeLibrary="2"
+				RuntimeTypeInfo="true"
+				SuppressStartupBanner="true"
+				TreatWChar_tAsBuiltInType="false"
+				WarningLevel="3" />
+			<Tool
+				Name="VCCustomBuildTool" />
+			<Tool
+				Name="VCLinkerTool"
+				AdditionalDependencies="../../lib/libprotobuf.lib ws2_32.lib c:\QtSDK\Desktop\Qt\4.8.0\msvc2008\lib\QtGui4.lib c:\QtSDK\Desktop\Qt\4.8.0\msvc2008\lib\QtCore4.lib"
+				AdditionalLibraryDirectories="c:\QtSDK\Desktop\Qt\4.8.0\msvc2008\lib"
+				AdditionalOptions="&quot;/MANIFESTDEPENDENCY:type=&apos;win32&apos; name=&apos;Microsoft.Windows.Common-Controls&apos; version=&apos;6.0.0.0&apos; publicKeyToken=&apos;6595b64144ccf1df&apos; language=&apos;*&apos; processorArchitecture=&apos;*&apos;&quot;"
+				GenerateDebugInformation="false"
+				IgnoreImportLibrary="true"
+				LinkIncremental="1"
+				LinkTimeCodeGeneration="0"
+				OutputFile="$(OutDir)\client.exe"
+				ProgramDatabaseFile=""
+				SubSystem="1"
+				SuppressStartupBanner="true" />
+			<Tool
+				Name="VCMIDLTool"
+				DefaultCharType="0"
+				EnableErrorChecks="1"
+				WarningLevel="0" />
+			<Tool
+				Name="VCPostBuildEventTool" />
+			<Tool
+				Name="VCPreBuildEventTool" />
+			<Tool
+				Name="VCPreLinkEventTool" />
+			<Tool
+				Name="VCResourceCompilerTool"
+				PreprocessorDefinitions="_CONSOLE,UNICODE,WIN32,QT_LARGEFILE_SUPPORT,_CRT_SECURE_NO_WARNINGS,WIN32_LEAN_AND_MEAN,NOMINMAX,QT_THREAD_SUPPORT,QT_DLL,QT_NO_DEBUG,QT_GUI_LIB,QT_CORE_LIB,QT_HAVE_MMX,QT_HAVE_3DNOW,QT_HAVE_SSE,QT_HAVE_MMXEXT,QT_HAVE_SSE2" />
+		</Configuration>
+	</Configurations>
+	<Files>
+		<Filter
+			Name="Source Files"
+			Filter="cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx"
+			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}">
+			<File
+				RelativePath="main.cpp" />
+			<File
+				RelativePath="..\shared\proto\cpp\messages_robocup_ssl_detection.pb.cc" />
+			<File
+				RelativePath="..\shared\proto\cpp\messages_robocup_ssl_geometry.pb.cc" />
+			<File
+				RelativePath="..\shared\proto\cpp\messages_robocup_ssl_refbox_log.pb.cc" />
+			<File
+				RelativePath="..\shared\proto\cpp\messages_robocup_ssl_wrapper.pb.cc" />
+			<File
+				RelativePath="..\shared\net\netraw.cpp" />
+			<File
+				RelativePath="..\shared\net\robocup_ssl_client.cpp" />
+		</Filter>
+		<Filter
+			Name="Header Files"
+			Filter="h;hpp;hxx;hm;inl;inc;xsd"
+			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}">
+			<File
+				RelativePath="..\shared\proto\cpp\messages_robocup_ssl_detection.pb.h" />
+			<File
+				RelativePath="..\shared\proto\cpp\messages_robocup_ssl_geometry.pb.h" />
+			<File
+				RelativePath="..\shared\proto\cpp\messages_robocup_ssl_refbox_log.pb.h" />
+			<File
+				RelativePath="..\shared\proto\cpp\messages_robocup_ssl_wrapper.pb.h" />
+			<File
+				RelativePath="..\shared\net\netraw.h" />
+			<File
+				RelativePath="..\shared\net\robocup_ssl_client.h" />
+			<File
+				RelativePath="..\shared\util\timer.h" />
+		</Filter>
+	</Files>
+	<Globals>
+	</Globals>
+</VisualStudioProject>

@@ -18,7 +18,6 @@ public:
     virtual string getCaptureMethodName() const;
 
 private:
-	RawImage result;
     cv::VideoCapture mCapture;
     VarList *mCaptureSettings;
     VarString *mIndex;

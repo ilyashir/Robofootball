@@ -1,27 +1,4 @@
-//========================================================================
-//  This software is free: you can redistribute it and/or modify
-//  it under the terms of the GNU General Public License Version 3,
-//  as published by the Free Software Foundation.
-//
-//  This software is distributed in the hope that it will be useful,
-//  but WITHOUT ANY WARRANTY; without even the implied warranty of
-//  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-//  GNU General Public License for more details.
-//
-//  You should have received a copy of the GNU General Public License
-//  Version 3 in the file COPYING that came with this distribution.
-//  If not, see <http://www.gnu.org/licenses/>.
-//========================================================================
-/*!
-  \file    main.cpp
-  \brief   The client application entry point.
-  \author  Shirokolobov Ilya, (C) 2013
-  \group   Robofootball's group, Russia
-*/
-//========================================================================
-
-#include <stdio.h>
-#include "RfClient.h"
+#include "RFWidget.h"
 
 int initConfig(RCConfig *config){
     ifstream configFile;
@@ -88,18 +65,36 @@ int initConfig(RCConfig *config){
     return 0;
 }
 
-int main(int argc, char *argv[])
+RFWidget::RFWidget(QWidget *parent)
+    : QWidget(parent)
 {
-//    (void)argc;
-//    (void)argv;
+    setFixedSize(200, 120);
 
-    QApplication app(argc, argv);
+    QPushButton *quit = new QPushButton(tr("Quit"), this);
+    //quit->setGeometry(62, 40, 75, 30);
+    quit->setFont(QFont("Times", 18, QFont::Bold));
 
-    RCConfig* rcconfig = new RCConfig();
+    QPushButton *go = new QPushButton(tr("&GO"));
+    go->setFont(QFont("Times", 18, QFont::Bold));
+
+    connect(quit, SIGNAL(clicked()), qApp, SLOT(quit()));
+    connect(go, SIGNAL(clicked()), this, SLOT(runrf()));
+
+    QHBoxLayout *topLayout = new QHBoxLayout;
+    topLayout->addWidget(go);
+    topLayout->addStretch(1);
+
+    QGridLayout *gridLayout = new QGridLayout;
+    gridLayout->addWidget(quit, 0, 0);
+    gridLayout->addLayout(topLayout, 0, 1);
+    gridLayout->setColumnStretch(1, 10);
+    setLayout(gridLayout);
+
+    RCConfig rcconfig;
 
     cout << "Initialization config file..." << endl;
 
-    if(!initConfig(rcconfig)){
+    if(!initConfig(&rcconfig)){
 
 //        cout << rcconfig.file_of_matlab << endl;
 //        cout << rcconfig.name << endl;
@@ -109,33 +104,24 @@ int main(int argc, char *argv[])
 //        cout << rcconfig.RULE_LENGTH << endl;
 
         cout << "...successful" << endl;
+
+        RfClient rfclien(rcconfig);
+
+        cout << "Run rf-client" << endl;
+
+//        rfclien.exec();
     }
     else
     {
         cerr << "...bad" << endl;
-        char *str = new char[16];
-        str = "Robofootball";
-        rcconfig->name = str;
-        str = "main";
-        rcconfig->file_of_matlab=str;
-        rcconfig->RULE_AMOUNT=5;
-        rcconfig->RULE_LENGTH=5;
-        rcconfig->BACK_AMOUNT=10;
-        rcconfig->BACK_LENGTH=8;
-
     }
 
-    RfData* data = new RfData(rcconfig);
+}
 
-    RfThread* thread = new RfThread(data);
-    thread->run_matlab();
-
-    RfClient rfclient(thread, data);
-    thread->go();
-//    rfclient.setGeometry(100, 100, 500, 355);
-    rfclient.show();
-    return app.exec();
+int RFWidget::runrf()
+{
 
 
-  //  return 0;
+
+    return 0;
 }

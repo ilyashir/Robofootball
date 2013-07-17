@@ -15,12 +15,6 @@ UI_DIR = ../build/client/ui
 #where to place intermediate resource files
 RCC_DIR = ../build/client/resources
 
-#where to place protobuf files
-LIB_DIR = ../lib
-
-#where to place MATLAB
-MATLAB_DIR = C:/MATLAB/R2009b
-
 unix {
   #add google protocol buffers
   LIBS += -lprotobuf
@@ -34,17 +28,16 @@ win32 {
   LIBS += $${LIB_DIR}/libprotobuf$${SUFFIX_STR}.lib \
           ws2_32.lib
 
-#  LIBS += $${MATLAB_DIR}/lib/win32/microsoft/libeng.lib \
-#          $${MATLAB_DIR}/lib/win32/microsoft/libmat.lib \
-#          $${MATLAB_DIR}/lib/win32/microsoft/libmx.lib
-
-  LIBS +=  $${MATLAB_DIR}/extern/lib/win32/microsoft/libeng.lib \
-           $${MATLAB_DIR}/extern/lib/win32/microsoft/libmat.lib \
-           $${MATLAB_DIR}/extern/lib/win32/microsoft/libmx.lib
+  LIBS += $${MATLAB_DIR}/lib/win32/microsoft/libeng.lib \
+          $${MATLAB_DIR}/lib/win32/microsoft/libmat.lib \
+          $${MATLAB_DIR}/lib/win32/microsoft/libmx.lib
 }
 
 #enable networking
 #QT     += network
+
+# enable gl
+QT += opengl
 
 #where to build the client executive
 TARGET = rf-client
@@ -56,4 +49,6 @@ DEPENDPATH = INCLUDEPATH
 
 HEADERS +=
 
+FORMS +=
 
+SOURCES +=
