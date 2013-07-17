@@ -161,112 +161,17 @@
      <string>«</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="B_RC_q">
-    <property name="geometry">
-     <rect>
-      <x>120</x>
-      <y>90</y>
-      <width>31</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>q</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="B_RC_e">
-    <property name="geometry">
-     <rect>
-      <x>160</x>
-      <y>90</y>
-      <width>31</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>e</string>
-    </property>
-   </widget>
-   <widget class="QPushButton" name="B_RC_b">
-    <property name="geometry">
-     <rect>
-      <x>120</x>
-      <y>120</y>
-      <width>71</width>
-      <height>23</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>b</string>
-    </property>
-   </widget>
-   <widget class="QComboBox" name="CB_RC_port">
-    <property name="geometry">
-     <rect>
-      <x>30</x>
-      <y>150</y>
-      <width>61</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <item>
-     <property name="text">
-      <string>1</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>2</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>3</string>
-     </property>
-    </item>
-    <item>
-     <property name="text">
-      <string>4</string>
-     </property>
-    </item>
-   </widget>
-   <widget class="QPushButton" name="B_RC_sensor_start">
-    <property name="geometry">
-     <rect>
-      <x>100</x>
-      <y>150</y>
-      <width>41</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>start</string>
-    </property>
-   </widget>
-   <widget class="QLabel" name="B_RC_sensor_label">
-    <property name="geometry">
-     <rect>
-      <x>170</x>
-      <y>150</y>
-      <width>61</width>
-      <height>21</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>0</string>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
       <x>90</x>
-      <y>120</y>
-      <width>31</width>
+      <y>110</y>
+      <width>61</width>
       <height>21</height>
      </rect>
     </property>
     <property name="text">
-     <string>beep</string>
+     <string>b - &quot;beep&quot;</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_3">
@@ -274,21 +179,21 @@
      <rect>
       <x>90</x>
       <y>90</y>
-      <width>21</width>
+      <width>101</width>
       <height>20</height>
      </rect>
     </property>
     <property name="text">
-     <string>kick</string>
+     <string>space - &quot;kick&quot;</string>
     </property>
    </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>30</y>
-      <width>46</width>
-      <height>13</height>
+      <x>130</x>
+      <y>40</y>
+      <width>24</width>
+      <height>14</height>
      </rect>
     </property>
     <property name="text">
@@ -298,10 +203,10 @@
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>60</x>
+      <x>90</x>
       <y>60</y>
-      <width>31</width>
-      <height>20</height>
+      <width>27</width>
+      <height>14</height>
      </rect>
     </property>
     <property name="text">
@@ -311,10 +216,10 @@
    <widget class="QLabel" name="label_5">
     <property name="geometry">
      <rect>
-      <x>100</x>
+      <x>130</x>
       <y>60</y>
-      <width>46</width>
-      <height>13</height>
+      <width>18</width>
+      <height>14</height>
      </rect>
     </property>
     <property name="text">
@@ -324,10 +229,10 @@
    <widget class="QLabel" name="label_6">
     <property name="geometry">
      <rect>
-      <x>130</x>
+      <x>160</x>
       <y>60</y>
-      <width>46</width>
-      <height>13</height>
+      <width>27</width>
+      <height>14</height>
      </rect>
     </property>
     <property name="text">
@@ -622,6 +527,62 @@
     </property>
    </widget>
   </widget>
+  <widget class="QLabel" name="B_RC_sensor_label">
+   <property name="geometry">
+    <rect>
+     <x>190</x>
+     <y>240</y>
+     <width>61</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>0</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="B_RC_sensor_start">
+   <property name="geometry">
+    <rect>
+     <x>120</x>
+     <y>240</y>
+     <width>41</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>start</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="CB_RC_port">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>240</y>
+     <width>61</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>1</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>2</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>3</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>4</string>
+    </property>
+   </item>
+  </widget>
   <zorder>pushButton</zorder>
   <zorder>pushButton_2</zorder>
   <zorder>pushButton_3</zorder>
@@ -635,6 +596,9 @@
   <zorder>pushButton_18</zorder>
   <zorder>GB_ost</zorder>
   <zorder>GB_search</zorder>
+  <zorder>B_RC_sensor_label</zorder>
+  <zorder>B_RC_sensor_start</zorder>
+  <zorder>CB_RC_port</zorder>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>

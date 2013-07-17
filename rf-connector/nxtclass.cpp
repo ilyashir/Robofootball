@@ -40,8 +40,8 @@ bool NXTcom::Close()
     connected=0;
     if (com)
     {
-        com->disconnect();
         com->close();
+        com->disconnect();
         //com->reset();
         delete(com);
         com=0;

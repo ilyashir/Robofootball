@@ -82,6 +82,20 @@ private slots:
   void on_B_RC_sensor_start_clicked();
   void on_B_remcontrol_clicked();
   */
+
+  //---remc
+public slots:
+  void on_B_remcontrol_clicked();
+  void on_B_RC_back_clicked();
+private:
+    void keyPressEvent(QKeyEvent *key);
+    void keyReleaseEvent(QKeyEvent * key);
+public:
+    QTimer *timer;
+    int keys[256];
+    int key_shift;
+public slots:
+    void RC_send(void);
 };
 
 #endif // WIDGET_H

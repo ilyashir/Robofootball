@@ -4,6 +4,9 @@
 
 #include "Qstring"
 
+#include <QDebug>
+#include <QTimer>
+
 #define MAX_DEVICE max_device
 //--------------------INI----------------
 Widget::Widget(BtPCModul * btmodul_,NXTclass ** nxtclass_,int max_device_,Qserver *qserver_, QWidget *parent) :
@@ -17,14 +20,20 @@ Widget::Widget(BtPCModul * btmodul_,NXTclass ** nxtclass_,int max_device_,Qserve
     btmodul=btmodul_;
     RobActNom=1;
     ui->setupUi(this);
-
-    //RemControl=new RemoteControl(&RobActNom);
+//RemControl
+    timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(RC_send()));
+    for(int i=0; i<256; i++)
+        keys[i]=0;
+    key_shift=0;
 
     connect(btmodul,SIGNAL(NewDevice()),this,SLOT(SearchingNewDevice()));
     connect(qserver,SIGNAL(NewChange()),this,SLOT(NewChange()));
     ui->GB_search->setHidden(1);
     ui->GB_search->setGeometry(0,0,300,200);
     this->setGeometry(300,300,300,200);
+    ui->GB_remote->setHidden(1);
+    ui->GB_remote->setGeometry(0,0,300,200);
     refresh();
 }
 
@@ -55,6 +64,7 @@ void Widget::refresh()
     ui->B_Connect->setEnabled(nxtclass[RobActNom]->authenticated && (nxtclass[RobActNom]->port>0));
     ui->B_Disconnect->setEnabled(nxtclass[RobActNom]->authenticated && (nxtclass[RobActNom]->port>0));
 
+    ui->B_remcontrol->setEnabled(nxtclass[RobActNom]->connected);
     ui->C_pipe->setChecked(qserver->IsConnected());
     {
         ui->comboBox->clear();
@@ -146,6 +156,96 @@ void Widget::on_B_Send_clicked()
 {
     qDebug()<<nxtclass[RobActNom]->Write(ui->lineEdit_3->text().toUtf8().data());
     refresh();
+}
+//-----------------------------------------------
+//              remotecontrol
+//-----------------------------------------------
+void Widget::on_B_RC_back_clicked()
+{
+    ui->GB_remote->setHidden(1);
+    ui->GB_ost->setHidden(0);
+    timer->stop();
+    refresh();
+}
+void Widget::on_B_remcontrol_clicked()
+{
+    ui->GB_remote->setHidden(0);
+    ui->GB_ost->setHidden(1);
+    this->setFocus();
+    timer->start(30);
+    refresh();
+}
+
+
+void Widget::keyPressEvent(QKeyEvent * key)
+{
+    if (key->key()<256)
+        keys[key->key()]=1;
+    if (key->key()==Qt::Key_Escape)
+    {
+        on_B_RC_back_clicked();
+    }
+    if (key->key()==Qt::Key_Shift)
+    {
+        key_shift=1;
+    }
+}
+
+void Widget::keyReleaseEvent(QKeyEvent * key)
+{
+    if (key->key()<256)
+        keys[key->key()]=0;
+    if (key->key()==Qt::Key_Shift)
+    {
+        key_shift=0;
+    }
+}
+
+
+void Widget::RC_send(void)
+{
+    char buf[32]="       ";
+    int L=0,R=0,S=0,K=0,P=0;
+    if (keys['W'])
+    {
+        L+=50;
+        R+=50;
+    }
+    if (keys['S'])
+    {
+        L-=50;
+        R-=50;
+    }
+    if (keys['A'])
+    {
+        L-=25;
+        R+=25;
+    }
+    if (keys['D'])
+    {
+        L+=25;
+        R-=25;
+    }
+    if (keys[' ']||keys['Q'])
+        K=1;
+    if (keys['E'])
+        K=-1;
+    if (keys['Z']||keys['B'])
+        P=1;
+    if (key_shift)
+    {
+        L=L*2;
+        R=R*2;
+        if (abs(L)>100) L=L/abs(L)*100;
+        if (abs(R)>100) R=R/abs(R)*100;
+    }
+    qDebug()<<L<<" "<<R<<" "<<K<<P<<S<<endl;
+    buf[0]=L;
+    buf[1]=R;
+    buf[2]=K;
+    buf[3]=P;
+    buf[4]=S;
+    nxtclass[RobActNom]->Write(buf);
 }
 //-----------------------------------------------
 //              test
@@ -248,3 +348,5 @@ void Widget::keyReleaseEvent(QKeyEvent * key)
 //-------------------------------------------------------
 //
 //-------------------------------------------------------
+
+
