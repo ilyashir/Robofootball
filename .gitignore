@@ -17,3 +17,5 @@ Thumbs.db
 Makefile*
 *.pro.user*
 bin/*
+bind/*
+build/*
