@@ -1,0 +1,1935 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<VarXML>
+	<Var name="Global" type="list">
+		<Var name="Field Configuration" type="list">
+			<Var name="Reset SSL 2009" type="trigger">
+			</Var>
+			<Var name="Line Width" type="int" minval="" maxval="">
+				10
+			</Var>
+			<Var name="Field Length" type="int" minval="" maxval="">
+				6000
+			</Var>
+			<Var name="Field Height" type="int" minval="" maxval="">
+				4000
+			</Var>
+			<Var name="Boundary Width" type="int" minval="" maxval="">
+				250
+			</Var>
+			<Var name="Referee Width" type="int" minval="" maxval="">
+				425
+			</Var>
+			<Var name="Goal Width" type="int" minval="" maxval="">
+				500
+			</Var>
+			<Var name="Goal Depth" type="int" minval="" maxval="">
+				180
+			</Var>
+			<Var name="Goal Wall Width" type="int" minval="" maxval="">
+				20
+			</Var>
+			<Var name="Center Radius" type="int" minval="" maxval="">
+				500
+			</Var>
+			<Var name="Defense Radius" type="int" minval="" maxval="">
+				500
+			</Var>
+			<Var name="Defense Stretch" type="int" minval="" maxval="">
+				350
+			</Var>
+			<Var name="Freekick Defense Dist" type="int" minval="" maxval="">
+				193
+			</Var>
+			<Var name="Penalty Spot Dist" type="int" minval="" maxval="">
+				450
+			</Var>
+			<Var name="Penalty Line From Spot Dist" type="int" minval="" maxval="">
+				400
+			</Var>
+			<Var name="Total Playable Length" type="int" minval="" maxval="">
+				6500
+			</Var>
+			<Var name="Total Playable Width" type="int" minval="" maxval="">
+				4500
+			</Var>
+			<Var name="Total Surface Length" type="int" minval="" maxval="">
+				7350
+			</Var>
+			<Var name="Total Surface Width" type="int" minval="" maxval="">
+				5350
+			</Var>
+			<Var name="Half Field Length" type="int" minval="" maxval="">
+				3000
+			</Var>
+			<Var name="Half Field Width" type="int" minval="" maxval="">
+				2000
+			</Var>
+			<Var name="Half Line Width" type="int" minval="" maxval="">
+				5
+			</Var>
+			<Var name="Half Goal Width" type="int" minval="" maxval="">
+				250
+			</Var>
+			<Var name="Half Defense Stretch" type="int" minval="" maxval="">
+				175
+			</Var>
+			<Var name="Half Total Playable Length" type="int" minval="" maxval="">
+				3250
+			</Var>
+			<Var name="Half Total Playable Width" type="int" minval="" maxval="">
+				2250
+			</Var>
+			<Var name="Half Total Surface Length" type="int" minval="" maxval="">
+				3675
+			</Var>
+			<Var name="Half Total Surface Width" type="int" minval="" maxval="">
+				2675
+			</Var>
+		</Var>
+		<Var name="Ball Detection" type="list">
+			<Var name="Max Ball Count" type="int" minval="" maxval="">
+				1
+			</Var>
+			<Var name="Ball Color" type="string">
+				Orange
+			</Var>
+			<Var name="Ball Properties" type="list">
+				<Var name="Ball Z-Height" type="double" minval="" maxval="">
+					30.000000
+				</Var>
+				<Var name="Min Width (pixels)" type="int" minval="" maxval="">
+					3
+				</Var>
+				<Var name="Max Width (pixels)" type="int" minval="" maxval="">
+					30
+				</Var>
+				<Var name="Min Height (pixels)" type="int" minval="" maxval="">
+					3
+				</Var>
+				<Var name="Max Height (pixels)" type="int" minval="" maxval="">
+					30
+				</Var>
+				<Var name="Min Area (sq-pixels)" type="int" minval="" maxval="">
+					9
+				</Var>
+				<Var name="Max Area (sq-pixels)" type="int" minval="" maxval="">
+					1000
+				</Var>
+			</Var>
+			<Var name="Gaussian Size Filter" type="list">
+				<Var name="Enable Filter" type="bool">
+					true
+				</Var>
+				<Var name="Expected Min Area (sq-pixels)" type="int" minval="" maxval="">
+					30
+				</Var>
+				<Var name="Expected Max Area (sq-pixels)" type="int" minval="" maxval="">
+					40
+				</Var>
+				<Var name="Expected Area StdDev (sq-pixels)" type="double" minval="" maxval="">
+					10.000000
+				</Var>
+			</Var>
+			<Var name="Near Robot Filter" type="list">
+				<Var name="Enable Filter" type="bool">
+					true
+				</Var>
+				<Var name="Distance (mm)" type="double" minval="" maxval="">
+					70.000000
+				</Var>
+			</Var>
+			<Var name="Histogram Filter" type="list">
+				<Var name="Enable Filter" type="bool">
+					true
+				</Var>
+				<Var name="Min Greenness" type="double" minval="" maxval="">
+					0.500000
+				</Var>
+				<Var name="Max Markeryness" type="double" minval="" maxval="">
+					2.000000
+				</Var>
+			</Var>
+			<Var name="Geometry Filters" type="list">
+				<Var name="Ball-In-Field Filter" type="bool">
+					true
+				</Var>
+				<Var name="Ball-In-Field Extra Space (mm)" type="double" minval="" maxval="">
+					30.000000
+				</Var>
+				<Var name="Ball-In-Goal Filter" type="bool">
+					true
+				</Var>
+			</Var>
+		</Var>
+		<Var name="Team Config" type="list">
+			<Var name="Teams" type="external" filename="robocup-ssl-teams.xml">
+			</Var>
+			<Var name="Add" type="trigger">
+			</Var>
+		</Var>
+		<Var name="Blue Team" type="list">
+			<Var name="Team" type="stringenum">
+				New Team 0
+				<Var name="0" type="string">
+					New Team 0
+				</Var>
+				<Var name="1" type="string">
+					New Team 1
+				</Var>
+			</Var>
+			<Var name="Max Robots" type="int" minval="" maxval="">
+				5
+			</Var>
+		</Var>
+		<Var name="Yellow Team" type="list">
+			<Var name="Team" type="stringenum">
+				New Team 0
+				<Var name="0" type="string">
+					New Team 0
+				</Var>
+				<Var name="1" type="string">
+					New Team 1
+				</Var>
+			</Var>
+			<Var name="Max Robots" type="int" minval="" maxval="">
+				5
+			</Var>
+		</Var>
+		<Var name="Network Output" type="list">
+			<Var name="Multicast Address" type="string">
+				224.5.23.2
+			</Var>
+			<Var name="Multicast Port" type="int" minval="1" maxval="65535">
+				10002
+			</Var>
+			<Var name="Multicast Interface" type="string">
+			</Var>
+		</Var>
+	</Var>
+	<Var name="Publish Geometry" type="list">
+		<Var name="Publish" type="trigger">
+		</Var>
+		<Var name="Auto Publish" type="list">
+			<Var name="Enable" type="bool">
+				false
+			</Var>
+			<Var name="Interval (seconds)" type="double" minval="" maxval="">
+				3.000000
+			</Var>
+		</Var>
+	</Var>
+	<Var name="Camera 0" type="list">
+		<Var name="Global" type="list">
+			<Var name="LUT 3D" type="external" filename="robocup-ssl-cam-0-lut-yuv.xml">
+			</Var>
+		</Var>
+		<Var name="Image Capture" type="list">
+			<Var name="Capture Control" type="list">
+				<Var name="start capture" type="trigger">
+				</Var>
+				<Var name="stop capture" type="trigger">
+				</Var>
+				<Var name="reset bus" type="trigger">
+				</Var>
+				<Var name="auto refresh params" type="bool">
+					true
+				</Var>
+				<Var name="re-read params" type="trigger">
+				</Var>
+				<Var name="Capture Module" type="stringenum">
+					Capture from USB webcam
+					<Var name="0" type="string">
+						DC 1394
+					</Var>
+					<Var name="1" type="string">
+						Read from files
+					</Var>
+					<Var name="2" type="string">
+						Generator
+					</Var>
+					<Var name="3" type="string">
+						Capture from USB webcam
+					</Var>
+				</Var>
+				<Var name="calbrate" type="trigger">
+				</Var>
+			</Var>
+			<Var name="DC1394" type="list">
+				<Var name="Conversion Settings" type="list">
+					<Var name="convert to mode" type="stringenum">
+						yuv422_uyvy
+						<Var name="0" type="string">
+							rgb
+						</Var>
+						<Var name="1" type="string">
+							yuv422_uyvy
+						</Var>
+					</Var>
+					<Var name="de-bayer" type="bool">
+						false
+					</Var>
+					<Var name="de-bayer pattern" type="stringenum">
+						rggb
+						<Var name="0" type="string">
+							rggb
+						</Var>
+						<Var name="1" type="string">
+							gbrg
+						</Var>
+						<Var name="2" type="string">
+							grbg
+						</Var>
+						<Var name="3" type="string">
+							bggr
+						</Var>
+					</Var>
+					<Var name="de-bayer method" type="stringenum">
+						nearest
+						<Var name="0" type="string">
+							nearest
+						</Var>
+						<Var name="1" type="string">
+							simple
+						</Var>
+						<Var name="2" type="string">
+							bilinear
+						</Var>
+						<Var name="3" type="string">
+							hqlinear
+						</Var>
+						<Var name="4" type="string">
+							downsample
+						</Var>
+						<Var name="5" type="string">
+							edgesense
+						</Var>
+						<Var name="6" type="string">
+							vng
+						</Var>
+						<Var name="7" type="string">
+							ahd
+						</Var>
+					</Var>
+					<Var name="de-bayer y16 bits" type="int" minval="" maxval="">
+						16
+					</Var>
+				</Var>
+				<Var name="Capture Settings" type="list">
+					<Var name="cam idx" type="int" minval="" maxval="">
+						0
+					</Var>
+					<Var name="framerate" type="int" minval="" maxval="">
+						60
+					</Var>
+					<Var name="width" type="int" minval="" maxval="">
+						780
+					</Var>
+					<Var name="height" type="int" minval="" maxval="">
+						580
+					</Var>
+					<Var name="left" type="int" minval="" maxval="">
+						0
+					</Var>
+					<Var name="top" type="int" minval="" maxval="">
+						0
+					</Var>
+					<Var name="capture mode" type="stringenum">
+						yuv422_uyvy
+						<Var name="0" type="string">
+							rgb
+						</Var>
+						<Var name="1" type="string">
+							rgb16
+						</Var>
+						<Var name="2" type="string">
+							raw8
+						</Var>
+						<Var name="3" type="string">
+							raw16
+						</Var>
+						<Var name="4" type="string">
+							mono8
+						</Var>
+						<Var name="5" type="string">
+							mono16
+						</Var>
+						<Var name="6" type="string">
+							yuv411
+						</Var>
+						<Var name="7" type="string">
+							yuv422_uyvy
+						</Var>
+						<Var name="8" type="string">
+							yuv444
+						</Var>
+					</Var>
+					<Var name="capture format" type="stringenum">
+						auto
+						<Var name="0" type="string">
+							auto
+						</Var>
+						<Var name="1" type="string">
+							native
+						</Var>
+						<Var name="2" type="string">
+							format7_0
+						</Var>
+						<Var name="3" type="string">
+							format7_1
+						</Var>
+						<Var name="4" type="string">
+							format7_2
+						</Var>
+						<Var name="5" type="string">
+							format7_3
+						</Var>
+						<Var name="6" type="string">
+							format7_4
+						</Var>
+						<Var name="7" type="string">
+							format7_5
+						</Var>
+						<Var name="8" type="string">
+							format7_6
+						</Var>
+						<Var name="9" type="string">
+							format7_7
+						</Var>
+					</Var>
+					<Var name="use 1394B" type="bool">
+						true
+					</Var>
+					<Var name="use ISO800" type="bool">
+						true
+					</Var>
+					<Var name="ringbuffer size" type="int" minval="" maxval="">
+						4
+					</Var>
+				</Var>
+				<Var name="Camera Parameters" type="list">
+					<Var name="brightness" type="list">
+						<Var name="enabled" type="bool">
+							false
+						</Var>
+						<Var name="auto" type="bool">
+							false
+						</Var>
+						<Var name="one-push" type="trigger">
+						</Var>
+						<Var name="value" type="int" minval="" maxval="">
+							0
+						</Var>
+						<Var name="use absolute" type="bool">
+							false
+						</Var>
+						<Var name="absolute value" type="double" minval="" maxval="">
+							0.000000
+						</Var>
+						<Var name="was_read" type="bool">
+							false
+						</Var>
+					</Var>
+					<Var name="exposure" type="list">
+						<Var name="enabled" type="bool">
+							false
+						</Var>
+						<Var name="auto" type="bool">
+							false
+						</Var>
+						<Var name="one-push" type="trigger">
+						</Var>
+						<Var name="value" type="int" minval="" maxval="">
+							0
+						</Var>
+						<Var name="use absolute" type="bool">
+							false
+						</Var>
+						<Var name="absolute value" type="double" minval="" maxval="">
+							0.000000
+						</Var>
+						<Var name="was_read" type="bool">
+							false
+						</Var>
+					</Var>
+					<Var name="sharpness" type="list">
+						<Var name="enabled" type="bool">
+							false
+						</Var>
+						<Var name="auto" type="bool">
+							false
+						</Var>
+						<Var name="one-push" type="trigger">
+						</Var>
+						<Var name="value" type="int" minval="" maxval="">
+							0
+						</Var>
+						<Var name="use absolute" type="bool">
+							false
+						</Var>
+						<Var name="absolute value" type="double" minval="" maxval="">
+							0.000000
+						</Var>
+						<Var name="was_read" type="bool">
+							false
+						</Var>
+					</Var>
+					<Var name="white balance" type="list">
+						<Var name="enabled" type="bool">
+							false
+						</Var>
+						<Var name="auto" type="bool">
+							false
+						</Var>
+						<Var name="one-push" type="trigger">
+						</Var>
+						<Var name="value U" type="int" minval="" maxval="">
+							0
+						</Var>
+						<Var name="value V" type="int" minval="" maxval="">
+							0
+						</Var>
+						<Var name="use absolute" type="bool">
+							false
+						</Var>
+						<Var name="absolute value" type="double" minval="" maxval="">
+							0.000000
+						</Var>
+						<Var name="was_read" type="bool">
+							false
+						</Var>
+					</Var>
+					<Var name="hue" type="list">
+						<Var name="enabled" type="bool">
+							false
+						</Var>
+						<Var name="auto" type="bool">
+							false
+						</Var>
+						<Var name="one-push" type="trigger">
+						</Var>
+						<Var name="value" type="int" minval="" maxval="">
+							0
+						</Var>
+						<Var name="use absolute" type="bool">
+							false
+						</Var>
+						<Var name="absolute value" type="double" minval="" maxval="">
+							0.000000
+						</Var>
+						<Var name="was_read" type="bool">
+							false
+						</Var>
+					</Var>
+					<Var name="saturation" type="list">
+						<Var name="enabled" type="bool">
+							false
+						</Var>
+						<Var name="auto" type="bool">
+							false
+						</Var>
+						<Var name="one-push" type="trigger">
+						</Var>
+						<Var name="value" type="int" minval="" maxval="">
+							0
+						</Var>
+						<Var name="use absolute" type="bool">
+							false
+						</Var>
+						<Var name="absolute value" type="double" minval="" maxval="">
+							0.000000
+						</Var>
+						<Var name="was_read" type="bool">
+							false
+						</Var>
+					</Var>
+					<Var name="gamma" type="list">
+						<Var name="enabled" type="bool">
+							false
+						</Var>
+						<Var name="auto" type="bool">
+							false
+						</Var>
+						<Var name="one-push" type="trigger">
+						</Var>
+						<Var name="value" type="int" minval="" maxval="">
+							0
+						</Var>
+						<Var name="use absolute" type="bool">
+							false
+						</Var>
+						<Var name="absolute value" type="double" minval="" maxval="">
+							0.000000
+						</Var>
+						<Var name="was_read" type="bool">
+							false
+						</Var>
+					</Var>
+					<Var name="shutter" type="list">
+						<Var name="enabled" type="bool">
+							false
+						</Var>
+						<Var name="auto" type="bool">
+							false
+						</Var>
+						<Var name="one-push" type="trigger">
+						</Var>
+						<Var name="value" type="int" minval="" maxval="">
+							0
+						</Var>
+						<Var name="use absolute" type="bool">
+							false
+						</Var>
+						<Var name="absolute value" type="double" minval="" maxval="">
+							0.000000
+						</Var>
+						<Var name="was_read" type="bool">
+							false
+						</Var>
+					</Var>
+					<Var name="gain" type="list">
+						<Var name="enabled" type="bool">
+							false
+						</Var>
+						<Var name="auto" type="bool">
+							false
+						</Var>
+						<Var name="one-push" type="trigger">
+						</Var>
+						<Var name="value" type="int" minval="" maxval="">
+							0
+						</Var>
+						<Var name="use absolute" type="bool">
+							false
+						</Var>
+						<Var name="absolute value" type="double" minval="" maxval="">
+							0.000000
+						</Var>
+						<Var name="was_read" type="bool">
+							false
+						</Var>
+					</Var>
+					<Var name="iris" type="list">
+						<Var name="enabled" type="bool">
+							false
+						</Var>
+						<Var name="auto" type="bool">
+							false
+						</Var>
+						<Var name="one-push" type="trigger">
+						</Var>
+						<Var name="value" type="int" minval="" maxval="">
+							0
+						</Var>
+						<Var name="use absolute" type="bool">
+							false
+						</Var>
+						<Var name="absolute value" type="double" minval="" maxval="">
+							0.000000
+						</Var>
+						<Var name="was_read" type="bool">
+							false
+						</Var>
+					</Var>
+					<Var name="focus" type="list">
+						<Var name="enabled" type="bool">
+							false
+						</Var>
+						<Var name="auto" type="bool">
+							false
+						</Var>
+						<Var name="one-push" type="trigger">
+						</Var>
+						<Var name="value" type="int" minval="" maxval="">
+							0
+						</Var>
+						<Var name="use absolute" type="bool">
+							false
+						</Var>
+						<Var name="absolute value" type="double" minval="" maxval="">
+							0.000000
+						</Var>
+						<Var name="was_read" type="bool">
+							false
+						</Var>
+					</Var>
+					<Var name="temperature" type="list">
+						<Var name="enabled" type="bool">
+							false
+						</Var>
+						<Var name="auto" type="bool">
+							false
+						</Var>
+						<Var name="one-push" type="trigger">
+						</Var>
+						<Var name="value" type="int" minval="" maxval="">
+							0
+						</Var>
+						<Var name="use absolute" type="bool">
+							false
+						</Var>
+						<Var name="absolute value" type="double" minval="" maxval="">
+							0.000000
+						</Var>
+						<Var name="was_read" type="bool">
+							false
+						</Var>
+					</Var>
+					<Var name="trigger" type="list">
+						<Var name="enabled" type="bool">
+							false
+						</Var>
+						<Var name="auto" type="bool">
+							false
+						</Var>
+						<Var name="one-push" type="trigger">
+						</Var>
+						<Var name="value" type="int" minval="" maxval="">
+							0
+						</Var>
+						<Var name="use absolute" type="bool">
+							false
+						</Var>
+						<Var name="absolute value" type="double" minval="" maxval="">
+							0.000000
+						</Var>
+						<Var name="was_read" type="bool">
+							false
+						</Var>
+					</Var>
+					<Var name="trigger delay" type="list">
+						<Var name="enabled" type="bool">
+							false
+						</Var>
+						<Var name="auto" type="bool">
+							false
+						</Var>
+						<Var name="one-push" type="trigger">
+						</Var>
+						<Var name="value" type="int" minval="" maxval="">
+							0
+						</Var>
+						<Var name="use absolute" type="bool">
+							false
+						</Var>
+						<Var name="absolute value" type="double" minval="" maxval="">
+							0.000000
+						</Var>
+						<Var name="was_read" type="bool">
+							false
+						</Var>
+					</Var>
+					<Var name="white shading" type="list">
+						<Var name="enabled" type="bool">
+							false
+						</Var>
+						<Var name="auto" type="bool">
+							false
+						</Var>
+						<Var name="one-push" type="trigger">
+						</Var>
+						<Var name="value R" type="int" minval="" maxval="">
+							0
+						</Var>
+						<Var name="value G" type="int" minval="" maxval="">
+							0
+						</Var>
+						<Var name="value B" type="int" minval="" maxval="">
+							0
+						</Var>
+						<Var name="use absolute" type="bool">
+							false
+						</Var>
+						<Var name="absolute value" type="double" minval="" maxval="">
+							0.000000
+						</Var>
+						<Var name="was_read" type="bool">
+							false
+						</Var>
+					</Var>
+					<Var name="frame rate" type="list">
+						<Var name="enabled" type="bool">
+							false
+						</Var>
+						<Var name="auto" type="bool">
+							false
+						</Var>
+						<Var name="one-push" type="trigger">
+						</Var>
+						<Var name="value" type="int" minval="" maxval="">
+							0
+						</Var>
+						<Var name="use absolute" type="bool">
+							false
+						</Var>
+						<Var name="absolute value" type="double" minval="" maxval="">
+							0.000000
+						</Var>
+						<Var name="was_read" type="bool">
+							false
+						</Var>
+					</Var>
+				</Var>
+			</Var>
+			<Var name="Read from files" type="list">
+				<Var name="Conversion Settings" type="list">
+					<Var name="convert to mode" type="stringenum">
+						rgb
+						<Var name="0" type="string">
+							rgb
+						</Var>
+						<Var name="1" type="string">
+							yuv422_uyvy
+						</Var>
+					</Var>
+				</Var>
+				<Var name="Capture Settings" type="list">
+					<Var name="directory" type="string">
+						pic4/
+					</Var>
+				</Var>
+			</Var>
+			<Var name="Generator" type="list">
+				<Var name="Conversion Settings" type="list">
+					<Var name="convert to mode" type="stringenum">
+						yuv422_uyvy
+						<Var name="0" type="string">
+							rgb
+						</Var>
+						<Var name="1" type="string">
+							yuv422_uyvy
+						</Var>
+					</Var>
+				</Var>
+				<Var name="Capture Settings" type="list">
+					<Var name="Framerate (FPS)" type="double" minval="" maxval="">
+						60.000000
+					</Var>
+					<Var name="Width (pixels)" type="int" minval="" maxval="">
+						640
+					</Var>
+					<Var name="Height (pixels)" type="int" minval="" maxval="">
+						480
+					</Var>
+					<Var name="Generate Color Test Image" type="bool">
+						false
+					</Var>
+				</Var>
+			</Var>
+			<Var name="OpenCV" type="list">
+				<Var name="Capture Settings" type="list">
+					<Var name="Camera index" type="string">
+						1
+					</Var>
+				</Var>
+			</Var>
+		</Var>
+		<Var name="DVR Settings" type="list">
+			<Var name="Max Frames" type="int" minval="0" maxval="">
+				250
+			</Var>
+			<Var name="Shift Video On Exceeding" type="bool">
+				true
+			</Var>
+		</Var>
+		<Var name="YUV Calibrator" type="list">
+		</Var>
+		<Var name="Camera Calibrator" type="list">
+			<Var name="Camera Parameters" type="list">
+				<Var name="focal length" type="double" minval="" maxval="">
+					311.472793
+				</Var>
+				<Var name="principal point x" type="double" minval="" maxval="">
+					423.316594
+				</Var>
+				<Var name="principal point y" type="double" minval="" maxval="">
+					271.775115
+				</Var>
+				<Var name="distortion" type="double" minval="0.000000" maxval="2.000000">
+					0.000000
+				</Var>
+				<Var name="q0" type="double" minval="" maxval="">
+					0.689832
+				</Var>
+				<Var name="q1" type="double" minval="" maxval="">
+					-0.723632
+				</Var>
+				<Var name="q2" type="double" minval="" maxval="">
+					0.014148
+				</Var>
+				<Var name="q3" type="double" minval="" maxval="">
+					0.017040
+				</Var>
+				<Var name="tx" type="double" minval="" maxval="">
+					-981.831133
+				</Var>
+				<Var name="ty" type="double" minval="" maxval="">
+					-1739.044727
+				</Var>
+				<Var name="tz" type="double" minval="0.000000" maxval="5000.000000">
+					2207.000000
+				</Var>
+			</Var>
+			<Var name="Field Half Configuration" type="list">
+				<Var name="Auto-Copy from Global Field Config" type="bool">
+					true
+				</Var>
+				<Var name="Camera Position" type="stringenum">
+					Half (Negative X)
+					<Var name="0" type="string">
+						Half (Negative X)
+					</Var>
+					<Var name="1" type="string">
+						Half (Positive X)
+					</Var>
+				</Var>
+				<Var name="Use features on center circle" type="bool">
+					false
+				</Var>
+				<Var name="Use features in defense area" type="bool">
+					false
+				</Var>
+				<Var name="Use features between goal posts " type="bool">
+					false
+				</Var>
+				<Var name="left corner x" type="int" minval="" maxval="">
+					-3000
+				</Var>
+				<Var name="left corner y" type="int" minval="" maxval="">
+					-2000
+				</Var>
+				<Var name="left goal area x" type="int" minval="" maxval="">
+					-3000
+				</Var>
+				<Var name="left goal area y" type="int" minval="" maxval="">
+					-675
+				</Var>
+				<Var name="left post area x" type="int" minval="" maxval="">
+					-3000
+				</Var>
+				<Var name="left post area y" type="int" minval="" maxval="">
+					-250
+				</Var>
+				<Var name="right post area x" type="int" minval="" maxval="">
+					-3000
+				</Var>
+				<Var name="right post area y" type="int" minval="" maxval="">
+					250
+				</Var>
+				<Var name="right goal area x" type="int" minval="" maxval="">
+					-3000
+				</Var>
+				<Var name="right goal area y" type="int" minval="" maxval="">
+					675
+				</Var>
+				<Var name="right corner x" type="int" minval="" maxval="">
+					-3000
+				</Var>
+				<Var name="right corner y" type="int" minval="" maxval="">
+					2000
+				</Var>
+				<Var name="left centerline x" type="int" minval="" maxval="">
+					0
+				</Var>
+				<Var name="left centerline y" type="int" minval="" maxval="">
+					-2000
+				</Var>
+				<Var name="left centercircle x" type="int" minval="" maxval="">
+					0
+				</Var>
+				<Var name="left centercircle y" type="int" minval="" maxval="">
+					-500
+				</Var>
+				<Var name="centercircle x" type="int" minval="" maxval="">
+					0
+				</Var>
+				<Var name="centercircle y" type="int" minval="" maxval="">
+					0
+				</Var>
+				<Var name="right centercircle x" type="int" minval="" maxval="">
+					0
+				</Var>
+				<Var name="right centercircle y" type="int" minval="" maxval="">
+					500
+				</Var>
+				<Var name="right centerline x" type="int" minval="" maxval="">
+					0
+				</Var>
+				<Var name="right centerline y" type="int" minval="" maxval="">
+					2000
+				</Var>
+				<Var name="centercircle radius" type="int" minval="" maxval="">
+					500
+				</Var>
+				<Var name="defense area radius" type="int" minval="" maxval="">
+					500
+				</Var>
+				<Var name="defense stretch" type="int" minval="" maxval="">
+					350
+				</Var>
+			</Var>
+			<Var name="Calibration Parameters" type="list">
+				<Var name="left corner in image x" type="double" minval="" maxval="">
+					605.000000
+				</Var>
+				<Var name="left corner in image y" type="double" minval="" maxval="">
+					449.000000
+				</Var>
+				<Var name="right corner in image x" type="double" minval="" maxval="">
+					0.000000
+				</Var>
+				<Var name="right corner in image y" type="double" minval="" maxval="">
+					468.000000
+				</Var>
+				<Var name="left centerline in image x" type="double" minval="" maxval="">
+					562.000000
+				</Var>
+				<Var name="left centerline in image y" type="double" minval="" maxval="">
+					16.000000
+				</Var>
+				<Var name="right centerline in image x" type="double" minval="" maxval="">
+					0.000000
+				</Var>
+				<Var name="right centerline in image y" type="double" minval="" maxval="">
+					40.000000
+				</Var>
+				<Var name="initial distortion" type="double" minval="" maxval="">
+					1.000000
+				</Var>
+				<Var name="camera height" type="double" minval="" maxval="">
+					3500.000000
+				</Var>
+				<Var name="line search corridor width" type="double" minval="" maxval="">
+					201.000000
+				</Var>
+				<Var name="convergence timeout (s)" type="double" minval="" maxval="">
+					10.000000
+				</Var>
+				<Var name="Cov corner measurement x" type="double" minval="" maxval="">
+					1.000000
+				</Var>
+				<Var name="Cov corner measurement y" type="double" minval="" maxval="">
+					1.000000
+				</Var>
+				<Var name="Cov line segment measurement x" type="double" minval="" maxval="">
+					1.000000
+				</Var>
+				<Var name="Cov line segment measurement y" type="double" minval="" maxval="">
+					1.000000
+				</Var>
+				<Var name="Points per line" type="int" minval="" maxval="">
+					20
+				</Var>
+				<Var name="Points inside the goal" type="int" minval="" maxval="">
+					5
+				</Var>
+				<Var name="Points inside center circle" type="int" minval="" maxval="">
+					6
+				</Var>
+				<Var name="Points on center circle" type="int" minval="" maxval="">
+					12
+				</Var>
+				<Var name="Points on defense area arc" type="int" minval="" maxval="">
+					5
+				</Var>
+				<Var name="Points on defense stretch" type="int" minval="" maxval="">
+					4
+				</Var>
+			</Var>
+		</Var>
+		<Var name="Visualization" type="list">
+			<Var name="enable" type="bool">
+				true
+			</Var>
+			<Var name="image" type="bool">
+				true
+			</Var>
+			<Var name="greyscale" type="bool">
+				true
+			</Var>
+			<Var name="thresholded" type="bool">
+				true
+			</Var>
+			<Var name="blobs" type="bool">
+				true
+			</Var>
+			<Var name="camera calibration" type="bool">
+				true
+			</Var>
+			<Var name="calibration result" type="bool">
+				false
+			</Var>
+			<Var name="detected edges" type="bool">
+				true
+			</Var>
+			<Var name="complete edge detection" type="bool">
+				false
+			</Var>
+		</Var>
+		<Var name="Blob Finding" type="list">
+			<Var name="min_blob_area" type="int" minval="" maxval="">
+				5
+			</Var>
+			<Var name="enable" type="bool">
+				true
+			</Var>
+		</Var>
+		<Var name="Robot Detection" type="list">
+		</Var>
+	</Var>
+	<Var name="Camera 1" type="list">
+		<Var name="Global" type="list">
+			<Var name="LUT 3D" type="external" filename="robocup-ssl-cam-1-lut-yuv.xml">
+			</Var>
+		</Var>
+		<Var name="Image Capture" type="list">
+			<Var name="Capture Control" type="list">
+				<Var name="start capture" type="trigger">
+				</Var>
+				<Var name="stop capture" type="trigger">
+				</Var>
+				<Var name="reset bus" type="trigger">
+				</Var>
+				<Var name="auto refresh params" type="bool">
+					true
+				</Var>
+				<Var name="re-read params" type="trigger">
+				</Var>
+				<Var name="Capture Module" type="stringenum">
+					Read from files
+					<Var name="0" type="string">
+						DC 1394
+					</Var>
+					<Var name="1" type="string">
+						Read from files
+					</Var>
+					<Var name="2" type="string">
+						Generator
+					</Var>
+					<Var name="3" type="string">
+						Capture from USB webcam
+					</Var>
+				</Var>
+			</Var>
+			<Var name="DC1394" type="list">
+				<Var name="Conversion Settings" type="list">
+					<Var name="convert to mode" type="stringenum">
+						yuv422_uyvy
+						<Var name="0" type="string">
+							rgb
+						</Var>
+						<Var name="1" type="string">
+							yuv422_uyvy
+						</Var>
+					</Var>
+					<Var name="de-bayer" type="bool">
+						false
+					</Var>
+					<Var name="de-bayer pattern" type="stringenum">
+						rggb
+						<Var name="0" type="string">
+							rggb
+						</Var>
+						<Var name="1" type="string">
+							gbrg
+						</Var>
+						<Var name="2" type="string">
+							grbg
+						</Var>
+						<Var name="3" type="string">
+							bggr
+						</Var>
+					</Var>
+					<Var name="de-bayer method" type="stringenum">
+						nearest
+						<Var name="0" type="string">
+							nearest
+						</Var>
+						<Var name="1" type="string">
+							simple
+						</Var>
+						<Var name="2" type="string">
+							bilinear
+						</Var>
+						<Var name="3" type="string">
+							hqlinear
+						</Var>
+						<Var name="4" type="string">
+							downsample
+						</Var>
+						<Var name="5" type="string">
+							edgesense
+						</Var>
+						<Var name="6" type="string">
+							vng
+						</Var>
+						<Var name="7" type="string">
+							ahd
+						</Var>
+					</Var>
+					<Var name="de-bayer y16 bits" type="int" minval="" maxval="">
+						16
+					</Var>
+				</Var>
+				<Var name="Capture Settings" type="list">
+					<Var name="cam idx" type="int" minval="" maxval="">
+						1
+					</Var>
+					<Var name="framerate" type="int" minval="" maxval="">
+						60
+					</Var>
+					<Var name="width" type="int" minval="" maxval="">
+						780
+					</Var>
+					<Var name="height" type="int" minval="" maxval="">
+						580
+					</Var>
+					<Var name="left" type="int" minval="" maxval="">
+						0
+					</Var>
+					<Var name="top" type="int" minval="" maxval="">
+						0
+					</Var>
+					<Var name="capture mode" type="stringenum">
+						yuv422_uyvy
+						<Var name="0" type="string">
+							rgb
+						</Var>
+						<Var name="1" type="string">
+							rgb16
+						</Var>
+						<Var name="2" type="string">
+							raw8
+						</Var>
+						<Var name="3" type="string">
+							raw16
+						</Var>
+						<Var name="4" type="string">
+							mono8
+						</Var>
+						<Var name="5" type="string">
+							mono16
+						</Var>
+						<Var name="6" type="string">
+							yuv411
+						</Var>
+						<Var name="7" type="string">
+							yuv422_uyvy
+						</Var>
+						<Var name="8" type="string">
+							yuv444
+						</Var>
+					</Var>
+					<Var name="capture format" type="stringenum">
+						auto
+						<Var name="0" type="string">
+							auto
+						</Var>
+						<Var name="1" type="string">
+							native
+						</Var>
+						<Var name="2" type="string">
+							format7_0
+						</Var>
+						<Var name="3" type="string">
+							format7_1
+						</Var>
+						<Var name="4" type="string">
+							format7_2
+						</Var>
+						<Var name="5" type="string">
+							format7_3
+						</Var>
+						<Var name="6" type="string">
+							format7_4
+						</Var>
+						<Var name="7" type="string">
+							format7_5
+						</Var>
+						<Var name="8" type="string">
+							format7_6
+						</Var>
+						<Var name="9" type="string">
+							format7_7
+						</Var>
+					</Var>
+					<Var name="use 1394B" type="bool">
+						true
+					</Var>
+					<Var name="use ISO800" type="bool">
+						true
+					</Var>
+					<Var name="ringbuffer size" type="int" minval="" maxval="">
+						4
+					</Var>
+				</Var>
+				<Var name="Camera Parameters" type="list">
+					<Var name="brightness" type="list">
+						<Var name="enabled" type="bool">
+							false
+						</Var>
+						<Var name="auto" type="bool">
+							false
+						</Var>
+						<Var name="one-push" type="trigger">
+						</Var>
+						<Var name="value" type="int" minval="" maxval="">
+							0
+						</Var>
+						<Var name="use absolute" type="bool">
+							false
+						</Var>
+						<Var name="absolute value" type="double" minval="" maxval="">
+							0.000000
+						</Var>
+						<Var name="was_read" type="bool">
+							false
+						</Var>
+					</Var>
+					<Var name="exposure" type="list">
+						<Var name="enabled" type="bool">
+							false
+						</Var>
+						<Var name="auto" type="bool">
+							false
+						</Var>
+						<Var name="one-push" type="trigger">
+						</Var>
+						<Var name="value" type="int" minval="" maxval="">
+							0
+						</Var>
+						<Var name="use absolute" type="bool">
+							false
+						</Var>
+						<Var name="absolute value" type="double" minval="" maxval="">
+							0.000000
+						</Var>
+						<Var name="was_read" type="bool">
+							false
+						</Var>
+					</Var>
+					<Var name="sharpness" type="list">
+						<Var name="enabled" type="bool">
+							false
+						</Var>
+						<Var name="auto" type="bool">
+							false
+						</Var>
+						<Var name="one-push" type="trigger">
+						</Var>
+						<Var name="value" type="int" minval="" maxval="">
+							0
+						</Var>
+						<Var name="use absolute" type="bool">
+							false
+						</Var>
+						<Var name="absolute value" type="double" minval="" maxval="">
+							0.000000
+						</Var>
+						<Var name="was_read" type="bool">
+							false
+						</Var>
+					</Var>
+					<Var name="white balance" type="list">
+						<Var name="enabled" type="bool">
+							false
+						</Var>
+						<Var name="auto" type="bool">
+							false
+						</Var>
+						<Var name="one-push" type="trigger">
+						</Var>
+						<Var name="value U" type="int" minval="" maxval="">
+							0
+						</Var>
+						<Var name="value V" type="int" minval="" maxval="">
+							0
+						</Var>
+						<Var name="use absolute" type="bool">
+							false
+						</Var>
+						<Var name="absolute value" type="double" minval="" maxval="">
+							0.000000
+						</Var>
+						<Var name="was_read" type="bool">
+							false
+						</Var>
+					</Var>
+					<Var name="hue" type="list">
+						<Var name="enabled" type="bool">
+							false
+						</Var>
+						<Var name="auto" type="bool">
+							false
+						</Var>
+						<Var name="one-push" type="trigger">
+						</Var>
+						<Var name="value" type="int" minval="" maxval="">
+							0
+						</Var>
+						<Var name="use absolute" type="bool">
+							false
+						</Var>
+						<Var name="absolute value" type="double" minval="" maxval="">
+							0.000000
+						</Var>
+						<Var name="was_read" type="bool">
+							false
+						</Var>
+					</Var>
+					<Var name="saturation" type="list">
+						<Var name="enabled" type="bool">
+							false
+						</Var>
+						<Var name="auto" type="bool">
+							false
+						</Var>
+						<Var name="one-push" type="trigger">
+						</Var>
+						<Var name="value" type="int" minval="" maxval="">
+							0
+						</Var>
+						<Var name="use absolute" type="bool">
+							false
+						</Var>
+						<Var name="absolute value" type="double" minval="" maxval="">
+							0.000000
+						</Var>
+						<Var name="was_read" type="bool">
+							false
+						</Var>
+					</Var>
+					<Var name="gamma" type="list">
+						<Var name="enabled" type="bool">
+							false
+						</Var>
+						<Var name="auto" type="bool">
+							false
+						</Var>
+						<Var name="one-push" type="trigger">
+						</Var>
+						<Var name="value" type="int" minval="" maxval="">
+							0
+						</Var>
+						<Var name="use absolute" type="bool">
+							false
+						</Var>
+						<Var name="absolute value" type="double" minval="" maxval="">
+							0.000000
+						</Var>
+						<Var name="was_read" type="bool">
+							false
+						</Var>
+					</Var>
+					<Var name="shutter" type="list">
+						<Var name="enabled" type="bool">
+							false
+						</Var>
+						<Var name="auto" type="bool">
+							false
+						</Var>
+						<Var name="one-push" type="trigger">
+						</Var>
+						<Var name="value" type="int" minval="" maxval="">
+							0
+						</Var>
+						<Var name="use absolute" type="bool">
+							false
+						</Var>
+						<Var name="absolute value" type="double" minval="" maxval="">
+							0.000000
+						</Var>
+						<Var name="was_read" type="bool">
+							false
+						</Var>
+					</Var>
+					<Var name="gain" type="list">
+						<Var name="enabled" type="bool">
+							false
+						</Var>
+						<Var name="auto" type="bool">
+							false
+						</Var>
+						<Var name="one-push" type="trigger">
+						</Var>
+						<Var name="value" type="int" minval="" maxval="">
+							0
+						</Var>
+						<Var name="use absolute" type="bool">
+							false
+						</Var>
+						<Var name="absolute value" type="double" minval="" maxval="">
+							0.000000
+						</Var>
+						<Var name="was_read" type="bool">
+							false
+						</Var>
+					</Var>
+					<Var name="iris" type="list">
+						<Var name="enabled" type="bool">
+							false
+						</Var>
+						<Var name="auto" type="bool">
+							false
+						</Var>
+						<Var name="one-push" type="trigger">
+						</Var>
+						<Var name="value" type="int" minval="" maxval="">
+							0
+						</Var>
+						<Var name="use absolute" type="bool">
+							false
+						</Var>
+						<Var name="absolute value" type="double" minval="" maxval="">
+							0.000000
+						</Var>
+						<Var name="was_read" type="bool">
+							false
+						</Var>
+					</Var>
+					<Var name="focus" type="list">
+						<Var name="enabled" type="bool">
+							false
+						</Var>
+						<Var name="auto" type="bool">
+							false
+						</Var>
+						<Var name="one-push" type="trigger">
+						</Var>
+						<Var name="value" type="int" minval="" maxval="">
+							0
+						</Var>
+						<Var name="use absolute" type="bool">
+							false
+						</Var>
+						<Var name="absolute value" type="double" minval="" maxval="">
+							0.000000
+						</Var>
+						<Var name="was_read" type="bool">
+							false
+						</Var>
+					</Var>
+					<Var name="temperature" type="list">
+						<Var name="enabled" type="bool">
+							false
+						</Var>
+						<Var name="auto" type="bool">
+							false
+						</Var>
+						<Var name="one-push" type="trigger">
+						</Var>
+						<Var name="value" type="int" minval="" maxval="">
+							0
+						</Var>
+						<Var name="use absolute" type="bool">
+							false
+						</Var>
+						<Var name="absolute value" type="double" minval="" maxval="">
+							0.000000
+						</Var>
+						<Var name="was_read" type="bool">
+							false
+						</Var>
+					</Var>
+					<Var name="trigger" type="list">
+						<Var name="enabled" type="bool">
+							false
+						</Var>
+						<Var name="auto" type="bool">
+							false
+						</Var>
+						<Var name="one-push" type="trigger">
+						</Var>
+						<Var name="value" type="int" minval="" maxval="">
+							0
+						</Var>
+						<Var name="use absolute" type="bool">
+							false
+						</Var>
+						<Var name="absolute value" type="double" minval="" maxval="">
+							0.000000
+						</Var>
+						<Var name="was_read" type="bool">
+							false
+						</Var>
+					</Var>
+					<Var name="trigger delay" type="list">
+						<Var name="enabled" type="bool">
+							false
+						</Var>
+						<Var name="auto" type="bool">
+							false
+						</Var>
+						<Var name="one-push" type="trigger">
+						</Var>
+						<Var name="value" type="int" minval="" maxval="">
+							0
+						</Var>
+						<Var name="use absolute" type="bool">
+							false
+						</Var>
+						<Var name="absolute value" type="double" minval="" maxval="">
+							0.000000
+						</Var>
+						<Var name="was_read" type="bool">
+							false
+						</Var>
+					</Var>
+					<Var name="white shading" type="list">
+						<Var name="enabled" type="bool">
+							false
+						</Var>
+						<Var name="auto" type="bool">
+							false
+						</Var>
+						<Var name="one-push" type="trigger">
+						</Var>
+						<Var name="value R" type="int" minval="" maxval="">
+							0
+						</Var>
+						<Var name="value G" type="int" minval="" maxval="">
+							0
+						</Var>
+						<Var name="value B" type="int" minval="" maxval="">
+							0
+						</Var>
+						<Var name="use absolute" type="bool">
+							false
+						</Var>
+						<Var name="absolute value" type="double" minval="" maxval="">
+							0.000000
+						</Var>
+						<Var name="was_read" type="bool">
+							false
+						</Var>
+					</Var>
+					<Var name="frame rate" type="list">
+						<Var name="enabled" type="bool">
+							false
+						</Var>
+						<Var name="auto" type="bool">
+							false
+						</Var>
+						<Var name="one-push" type="trigger">
+						</Var>
+						<Var name="value" type="int" minval="" maxval="">
+							0
+						</Var>
+						<Var name="use absolute" type="bool">
+							false
+						</Var>
+						<Var name="absolute value" type="double" minval="" maxval="">
+							0.000000
+						</Var>
+						<Var name="was_read" type="bool">
+							false
+						</Var>
+					</Var>
+				</Var>
+			</Var>
+			<Var name="Read from files" type="list">
+				<Var name="Conversion Settings" type="list">
+					<Var name="convert to mode" type="stringenum">
+						rgb
+						<Var name="0" type="string">
+							rgb
+						</Var>
+						<Var name="1" type="string">
+							yuv422_uyvy
+						</Var>
+					</Var>
+				</Var>
+				<Var name="Capture Settings" type="list">
+					<Var name="directory" type="string">
+						d:\Work\robofootball\pics\
+					</Var>
+				</Var>
+			</Var>
+			<Var name="Generator" type="list">
+				<Var name="Conversion Settings" type="list">
+					<Var name="convert to mode" type="stringenum">
+						yuv422_uyvy
+						<Var name="0" type="string">
+							rgb
+						</Var>
+						<Var name="1" type="string">
+							yuv422_uyvy
+						</Var>
+					</Var>
+				</Var>
+				<Var name="Capture Settings" type="list">
+					<Var name="Framerate (FPS)" type="double" minval="" maxval="">
+						60.000000
+					</Var>
+					<Var name="Width (pixels)" type="int" minval="" maxval="">
+						780
+					</Var>
+					<Var name="Height (pixels)" type="int" minval="" maxval="">
+						580
+					</Var>
+					<Var name="Generate Color Test Image" type="bool">
+						false
+					</Var>
+				</Var>
+			</Var>
+			<Var name="OpenCV" type="list">
+				<Var name="Capture Settings" type="list">
+					<Var name="Camera index" type="string">
+						0
+					</Var>
+				</Var>
+			</Var>
+		</Var>
+		<Var name="DVR Settings" type="list">
+			<Var name="Max Frames" type="int" minval="0" maxval="">
+				250
+			</Var>
+			<Var name="Shift Video On Exceeding" type="bool">
+				true
+			</Var>
+		</Var>
+		<Var name="YUV Calibrator" type="list">
+		</Var>
+		<Var name="Camera Calibrator" type="list">
+			<Var name="Camera Parameters" type="list">
+				<Var name="focal length" type="double" minval="" maxval="">
+					757.152119
+				</Var>
+				<Var name="principal point x" type="double" minval="" maxval="">
+					255.748405
+				</Var>
+				<Var name="principal point y" type="double" minval="" maxval="">
+					360.912506
+				</Var>
+				<Var name="distortion" type="double" minval="0.000000" maxval="2.000000">
+					0.000000
+				</Var>
+				<Var name="q0" type="double" minval="" maxval="">
+					-0.704071
+				</Var>
+				<Var name="q1" type="double" minval="" maxval="">
+					-0.709925
+				</Var>
+				<Var name="q2" type="double" minval="" maxval="">
+					-0.016627
+				</Var>
+				<Var name="q3" type="double" minval="" maxval="">
+					0.003696
+				</Var>
+				<Var name="tx" type="double" minval="" maxval="">
+					534.983877
+				</Var>
+				<Var name="ty" type="double" minval="" maxval="">
+					-2319.847039
+				</Var>
+				<Var name="tz" type="double" minval="0.000000" maxval="5000.000000">
+					5000.000000
+				</Var>
+			</Var>
+			<Var name="Field Half Configuration" type="list">
+				<Var name="Auto-Copy from Global Field Config" type="bool">
+					true
+				</Var>
+				<Var name="Camera Position" type="stringenum">
+					Half (Positive X)
+					<Var name="0" type="string">
+						Half (Negative X)
+					</Var>
+					<Var name="1" type="string">
+						Half (Positive X)
+					</Var>
+				</Var>
+				<Var name="Use features on center circle" type="bool">
+					false
+				</Var>
+				<Var name="Use features in defense area" type="bool">
+					false
+				</Var>
+				<Var name="Use features between goal posts " type="bool">
+					false
+				</Var>
+				<Var name="left corner x" type="int" minval="" maxval="">
+					3000
+				</Var>
+				<Var name="left corner y" type="int" minval="" maxval="">
+					2000
+				</Var>
+				<Var name="left goal area x" type="int" minval="" maxval="">
+					3000
+				</Var>
+				<Var name="left goal area y" type="int" minval="" maxval="">
+					675
+				</Var>
+				<Var name="left post area x" type="int" minval="" maxval="">
+					3000
+				</Var>
+				<Var name="left post area y" type="int" minval="" maxval="">
+					250
+				</Var>
+				<Var name="right post area x" type="int" minval="" maxval="">
+					3000
+				</Var>
+				<Var name="right post area y" type="int" minval="" maxval="">
+					-250
+				</Var>
+				<Var name="right goal area x" type="int" minval="" maxval="">
+					3000
+				</Var>
+				<Var name="right goal area y" type="int" minval="" maxval="">
+					-675
+				</Var>
+				<Var name="right corner x" type="int" minval="" maxval="">
+					3000
+				</Var>
+				<Var name="right corner y" type="int" minval="" maxval="">
+					-2000
+				</Var>
+				<Var name="left centerline x" type="int" minval="" maxval="">
+					0
+				</Var>
+				<Var name="left centerline y" type="int" minval="" maxval="">
+					2000
+				</Var>
+				<Var name="left centercircle x" type="int" minval="" maxval="">
+					0
+				</Var>
+				<Var name="left centercircle y" type="int" minval="" maxval="">
+					500
+				</Var>
+				<Var name="centercircle x" type="int" minval="" maxval="">
+					0
+				</Var>
+				<Var name="centercircle y" type="int" minval="" maxval="">
+					0
+				</Var>
+				<Var name="right centercircle x" type="int" minval="" maxval="">
+					0
+				</Var>
+				<Var name="right centercircle y" type="int" minval="" maxval="">
+					-500
+				</Var>
+				<Var name="right centerline x" type="int" minval="" maxval="">
+					0
+				</Var>
+				<Var name="right centerline y" type="int" minval="" maxval="">
+					-2000
+				</Var>
+				<Var name="centercircle radius" type="int" minval="" maxval="">
+					500
+				</Var>
+				<Var name="defense area radius" type="int" minval="" maxval="">
+					500
+				</Var>
+				<Var name="defense stretch" type="int" minval="" maxval="">
+					350
+				</Var>
+			</Var>
+			<Var name="Calibration Parameters" type="list">
+				<Var name="left corner in image x" type="double" minval="" maxval="">
+					628.000000
+				</Var>
+				<Var name="left corner in image y" type="double" minval="" maxval="">
+					461.000000
+				</Var>
+				<Var name="right corner in image x" type="double" minval="" maxval="">
+					32.000000
+				</Var>
+				<Var name="right corner in image y" type="double" minval="" maxval="">
+					458.000000
+				</Var>
+				<Var name="left centerline in image x" type="double" minval="" maxval="">
+					639.000000
+				</Var>
+				<Var name="left centerline in image y" type="double" minval="" maxval="">
+					18.000000
+				</Var>
+				<Var name="right centerline in image x" type="double" minval="" maxval="">
+					29.000000
+				</Var>
+				<Var name="right centerline in image y" type="double" minval="" maxval="">
+					6.000000
+				</Var>
+				<Var name="initial distortion" type="double" minval="" maxval="">
+					1.000000
+				</Var>
+				<Var name="camera height" type="double" minval="" maxval="">
+					2200.000000
+				</Var>
+				<Var name="line search corridor width" type="double" minval="" maxval="">
+					135.000000
+				</Var>
+				<Var name="convergence timeout (s)" type="double" minval="" maxval="">
+					10.000000
+				</Var>
+				<Var name="Cov corner measurement x" type="double" minval="" maxval="">
+					1.000000
+				</Var>
+				<Var name="Cov corner measurement y" type="double" minval="" maxval="">
+					1.000000
+				</Var>
+				<Var name="Cov line segment measurement x" type="double" minval="" maxval="">
+					1.000000
+				</Var>
+				<Var name="Cov line segment measurement y" type="double" minval="" maxval="">
+					1.000000
+				</Var>
+				<Var name="Points per line" type="int" minval="" maxval="">
+					20
+				</Var>
+				<Var name="Points inside the goal" type="int" minval="" maxval="">
+					5
+				</Var>
+				<Var name="Points inside center circle" type="int" minval="" maxval="">
+					6
+				</Var>
+				<Var name="Points on center circle" type="int" minval="" maxval="">
+					12
+				</Var>
+				<Var name="Points on defense area arc" type="int" minval="" maxval="">
+					5
+				</Var>
+				<Var name="Points on defense stretch" type="int" minval="" maxval="">
+					4
+				</Var>
+			</Var>
+		</Var>
+		<Var name="Visualization" type="list">
+			<Var name="enable" type="bool">
+				true
+			</Var>
+			<Var name="image" type="bool">
+				true
+			</Var>
+			<Var name="greyscale" type="bool">
+				false
+			</Var>
+			<Var name="thresholded" type="bool">
+				false
+			</Var>
+			<Var name="blobs" type="bool">
+				false
+			</Var>
+			<Var name="camera calibration" type="bool">
+				false
+			</Var>
+			<Var name="calibration result" type="bool">
+				false
+			</Var>
+			<Var name="detected edges" type="bool">
+				false
+			</Var>
+			<Var name="complete edge detection" type="bool">
+				false
+			</Var>
+		</Var>
+		<Var name="Blob Finding" type="list">
+			<Var name="min_blob_area" type="int" minval="" maxval="">
+				5
+			</Var>
+			<Var name="enable" type="bool">
+				true
+			</Var>
+		</Var>
+		<Var name="Robot Detection" type="list">
+		</Var>
+	</Var>
+</VarXML>
