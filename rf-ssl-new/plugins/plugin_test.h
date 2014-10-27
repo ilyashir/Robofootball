@@ -26,6 +26,8 @@
 #include <QLabel>
 #include <QToolButton>
 
+#include <QList>
+
 using namespace cv;
 #define pi 3.14159265
 
@@ -115,7 +117,7 @@ public:
 #define THRESH 10
 #define pi 3.14159265
 
-#define MAX_RUNS 10000
+#define MAX_RUNS 100000
 #define MAX_REGIONS 1000
 
 #define MIN_AREA 30
@@ -153,7 +155,7 @@ class Region
 		int area;
 		double rgb[3];
 		double cx,cy,ix,iy,ixy;
-		double angle;
+        double angle;
 		int color;
 
 		
@@ -194,16 +196,18 @@ class Hat
 {
 public:
 	Region regs[5];
+        int id;
 	int color;
 	double x,y;
         double phi;
         int used;
-        Hat(){x=0;y=0;phi=0;used=0;}
+        Hat(){x=0;y=0;phi=0;used=0;id=-1;}
         void add(Region reg)
         {
                 regs[used++]=reg;
                 //printf("used: %d\n",used);
         }
+        void computeId();
 };
 
 class Color
@@ -271,6 +275,8 @@ class imageClust
 		void findHats();
                 void calibrate();
 
+                Mat Wolf(Mat img, int w, double k);
+
                 bool checkColor(int num,uchar * color);
 
 
@@ -280,18 +286,17 @@ class imageClust
 class testPlugin : public VisionPlugin
 {
     Q_OBJECT
-    protected slots:
-      void calibClick();
-      void readClick();
-      void threshChanged(int i);
+
 
 public:
+    virtual void mousePressEvent ( QMouseEvent * event, pixelloc loc );
     virtual QWidget * getControlWidget();
     virtual string getName();
     QLabel * info;
     QVBoxLayout * layout;
     imageClust * cl;
     QSpinBox * sb;
+    QList<pixelloc>* m_c;
 
   //-----------------------------
   //local copies of the vartypes tree for better performance
@@ -311,6 +316,11 @@ public:
   bool near_robot_filter;
   double near_robot_dist_sq;
   int max_balls;
+
+  //ƒл€ высчитывани€ усредненного изображени€
+  int count;
+  Mat avg;
+
   //-----------------------------
 
   /////////////////////////////////////////////////////////////////
@@ -367,6 +377,11 @@ public:
     testPlugin(FrameBuffer * _buffer, LUT3D * lut, const CameraParameters& camera_params, const RoboCupField& field,  CMPattern::TeamSelector * _global_team_selector_blue2, CMPattern::TeamSelector * _global_team_selector_yellow2,  PluginDetectBallsSettings * _settings=0);
     virtual ~testPlugin();
     virtual ProcessResult process(FrameData * data, RenderOptions * options);
+
+public slots:
+  void calibClick();
+  void readClick();
+  void threshChanged(int i);
 
 };
 

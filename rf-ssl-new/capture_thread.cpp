@@ -178,11 +178,11 @@ void CaptureThread::run() {
     CaptureStats * stats;
     bool changed;
 
-	/*
-		if (affinity!=0) {
-	  affinity->demandCore(camId);
-	}
-		*/
+        /*
+                if (affinity!=0) {
+          affinity->demandCore(camId);
+        }
+                */
 
     while(true) {
       if (rb!=0) {
@@ -194,8 +194,15 @@ void CaptureThread::run() {
         capture_mutex.lock();
         if ((capture != 0) && (capture->isCapturing())) {
           RawImage pic_raw=capture->getFrame();
+
+
           d->time=pic_raw.getTime();
           capture->copyAndConvertFrame( pic_raw,d->video);
+
+          /////
+
+          pic_raw.clear();
+
           capture_mutex.unlock();
 
           counter->count();
@@ -211,13 +218,13 @@ void CaptureThread::run() {
           stack_mutex.unlock();
           rb->nextWrite(true);
 
-
           if (changed) {
             if (c_auto_refresh->getBool()==true) {
               capture_mutex.lock();
               if ((capture != 0) && (capture->isCapturing())) capture->readAllParameterValues();
               capture_mutex.unlock();
             }
+
             stack_mutex.lock();
             stack->updateTimingStatistics();
             stack_mutex.unlock();
@@ -245,6 +252,8 @@ void CaptureThread::run() {
           capture_mutex.unlock();
           return;
         }
+        //delete d;
+       // d->video.clear();
       }
     }
 }

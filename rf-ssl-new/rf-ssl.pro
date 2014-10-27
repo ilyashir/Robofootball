@@ -16,7 +16,7 @@ UI_DIR = ../build/rf-ssl/ui
 RCC_DIR = ../build/rf-ssl/resources
 
 #where to place LIBS
-LIB_DIR = ../lib
+LIB_DIR = d:/Work/robofootball/lib
 
 unix {
   #add libeigen include path
@@ -39,7 +39,8 @@ win32 {
           ws2_32.lib
 
 
-  OPENCV_PATH = $$(OPENCV_PATH)
+  #OPENCV_PATH = $$(OPENCV_PATH)
+    OPENCV_PATH = d:\Work\opencv242
 
   !isEmpty(OPENCV_PATH){
     message(Compiling with OpenCV in $$(OPENCV_PATH))
@@ -115,7 +116,7 @@ win32 {
 }
 
 #enable gl
-QT     += opengl
+QT     += opengl core
 #enable networking
 #QT     += network
 

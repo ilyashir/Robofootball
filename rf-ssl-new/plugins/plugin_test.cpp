@@ -17,6 +17,9 @@ testPlugin::testPlugin( FrameBuffer * _buffer, LUT3D * lut, const CameraParamete
     //printf("testPlugin inti\n");
     cl=new imageClust();
     cl->readCovs();
+    m_c = new QList<pixelloc>();
+    avg = Mat::zeros(480,640,CV_32FC3);
+    count=0;
 }
 
 
@@ -25,54 +28,81 @@ testPlugin::~testPlugin()
    // delete cl;
 }
 
-ProcessResult testPlugin::process(FrameData * data, RenderOptions * options) {
-  (void)options;
+void testPlugin::mousePressEvent(QMouseEvent *event, pixelloc loc)
+{
+    //info->setText(QString::number(loc.x)+QString(" ")+QString::number(loc.y));
+    m_c->push_back(loc);
+}
 
-  ImageInterface * source = &(data->video);
+ProcessResult testPlugin::process(FrameData * data, RenderOptions * options)
+{
+    (void)options;
 
-  RawImage * processedImg;
-  if ((processedImg=(RawImage *)data->map.get("qwerty")) == 0) 
-  {
-    processedImg=(RawImage *)data->map.insert("qwerty",new RawImage());
-  }
+    ImageInterface * source = &(data->video);
 
-  processedImg -> allocate(COLOR_RGB8,source -> getWidth(),source -> getHeight());
-  processedImg -> setWidth(source -> getWidth());
-  processedImg -> setHeight(source -> getHeight());
+    RawImage * processedImg;
+    if ((processedImg=(RawImage *)data->map.get("qwerty")) == 0)
+    {
+        processedImg=(RawImage *)data->map.insert("qwerty",new RawImage());
+    }
 
-  Mat img=Mat::zeros(source -> getHeight(),source -> getWidth(),CV_8UC3);
+    processedImg -> allocate(COLOR_RGB8,source -> getWidth(),source -> getHeight());
+    processedImg -> setWidth(source -> getWidth());
+    processedImg -> setHeight(source -> getHeight());
 
-  int          source_size    = source->getNumPixels();
-  rgb *        source_pointer = (rgb*)(source->getData());
+    Mat img=Mat::zeros(source -> getHeight(),source -> getWidth(),CV_8UC3);
+   // Mat img(source -> getHeight(),source -> getWidth(),CV_8UC3);
+    uchar* mat = img.data;
 
-	for (int i=0;i<480;++i)
-		for (int j=0;j<640;++j)
-		{
-			img.at<Vec3b>(i,j)[2]=source_pointer[i*source->getWidth()+j].r;
-			img.at<Vec3b>(i,j)[1]=source_pointer[i*source->getWidth()+j].g;
-			img.at<Vec3b>(i,j)[0]=source_pointer[i*source->getWidth()+j].b;
-		}
+    int          source_size    = source->getNumPixels();
+    rgb *        source_pointer = (rgb*)(source->getData());
 
-        //cl=new imageClust();
-
-        cl->setImg(img);
-       // cl->rle();
-       // cl->clust();
-       // cl->regions();
-       cl->findHats();
-       Mat tmp=Mat::zeros(img.size(),CV_8UC1);
-       cl->recover(tmp);
-
-	
-	
-
-
+    for (int i=0;i<480;++i)
+        for (int j=0;j<640;++j)
         {
+            mat[3*(i*640+j)+2]=source_pointer[i*source->getWidth()+j].r;
+            mat[3*(i*640+j)+1]=source_pointer[i*source->getWidth()+j].g;
+            mat[3*(i*640+j)+0]=source_pointer[i*source->getWidth()+j].b;
+        }
+//    if (count<9)
+//    {
+//        ++count;
+//        Mat tmp;
+//        img.convertTo(tmp,CV_32FC3);
+//        avg+=tmp/9;
+
+//        return ProcessingOk;
+//    }
+//    if (count==9)
+//    {
+//        avg.convertTo(avg,CV_8UC3);
+//        ++count;
+//    }
+
+//   // Mat img1; img.copyTo(img1);
+//    subtract(img,avg,img);
+    cl->setImg(img);
+
+    cl->findHats();
+    cl->recover(img);
+    printf("after recover\n");
+   // Mat out;
+    //cv::normalize(avg,avg,0,255,NORM_MINMAX,-1,Mat());
+//    avg.convertTo(avg,CV_8UC3);
+//    cvtColor(avg,avg,CV_BGR2RGB);
+    //normalize(avg,)
+   // info->setPixmap(QPixmap::fromImage(QImage((const unsigned char*)(avg.data), avg.cols, avg.rows, QImage::Format_RGB888)));
+    printf("after draw\n");
+    //info->setPixmap();
+    info->setPixmap(QPixmap::fromImage(QImage((const unsigned char*)(cl->gray.data), cl->gray.cols, cl->gray.rows, QImage::Format_Indexed8)));
+
+    {
         // From primordial ssl
         SSL_DetectionFrame * detection_frame = 0;
 
         detection_frame= ( SSL_DetectionFrame * ) data->map.get ( "ssl_detection_frame" );
-        if ( detection_frame == 0 ) detection_frame= ( SSL_DetectionFrame * ) data->map.insert ( "ssl_detection_frame",new SSL_DetectionFrame() );
+        if ( detection_frame == 0 )
+            detection_frame= ( SSL_DetectionFrame * ) data->map.insert ( "ssl_detection_frame",new SSL_DetectionFrame() );
 
         detection_frame->clear_balls();
 
@@ -94,134 +124,165 @@ ProcessResult testPlugin::process(FrameData * data, RenderOptions * options) {
         ball->set_y ( field_pos_3d.y );
         ball->set_pixel_x ( cl->ball.x );
         ball->set_pixel_y ( cl->ball.y );
+        printf("after ball\n");
 
-
-
-        //from primordial ssl
-
-        //::google::protobuf::RepeatedPtrField< ::SSL_DetectionRobot >* robotlist=0;
-        //SSL_DetectionRobot * result_robot = 0;
-        //int size=robotlist->size();
-        //for (int i = 0; i<2; i++) {
-                //vector2d reg_img_center( 5 , 7 );
-                //vector3d reg_center3d;
-                //_camera_params.image2field(reg_center3d,reg_img_center,_robot_height);
-               // camera_parameters.image2field(reg_center3d,reg_img_center, 140.0 );
-                //vector2d reg_center(reg_center3d.x,reg_center3d.y);
         ::google::protobuf::RepeatedPtrField< ::SSL_DetectionRobot >* robotlist_blue=0;
         ::google::protobuf::RepeatedPtrField< ::SSL_DetectionRobot >* robotlist_yellow=0;
         robotlist_blue=detection_frame->mutable_robots_blue();
         robotlist_yellow=detection_frame->mutable_robots_yellow();
-        //int robotlist_blue_size = robotlist_blue->size();
-        //int robotlist_yellow_size = robotlist_yellow->size();
 
-        for(int i=0; i<2; i++){
-            SSL_DetectionRobot * robot = 0;
-            if (robotlist_blue->size() < i+1) {
-                robotlist_blue->Add();
-                robot = robotlist_blue->Mutable(i);
-            } else {
-                robot = robotlist_blue->Mutable(i);
-                robot->Clear();
+        int count=0;
+        for(int i=0; i<12; i++){
+            if (cl->blues[i].id>-1)
+            {
+                SSL_DetectionRobot * robot = 0;
+                if (robotlist_blue->size() < count+1)
+                {
+                    robotlist_blue->Add();
+                    robot = robotlist_blue->Mutable(count);
+                }
+                else
+                {
+                    robot = robotlist_blue->Mutable(count);
+                    robot->Clear();
+                }
+                ++count;
+                //  printf("%d size: %d\n",i,robotlist_blue->size());
+
+                vector2d reg_img_center( cl->blues[i].x , cl->blues[i].y );
+                vector3d reg_center3d;
+                camera_parameters.image2field(reg_center3d,reg_img_center, 140.0 );
+
+                robot->set_confidence(count );
+                robot->set_robot_id( i );
+                robot->set_orientation(cl->blues[i].phi);
+                robot->set_pixel_x( cl->blues[i].x );
+                robot->set_pixel_y( cl->blues[i].y );
+                robot->set_x( reg_center3d.x );
+                robot->set_y( reg_center3d.y );
+                robot->set_height( 140.0 );
+                printf("Blues %d coords: %f %f %f\n",robot->robot_id(),robot->x(),robot->y(),robot->orientation());
             }
-            vector2d reg_img_center( cl->blues[i].x , cl->blues[i].y );
-            vector3d reg_center3d;
-            camera_parameters.image2field(reg_center3d,reg_img_center, 140.0 );
-
-            robot->set_confidence( i );
-            robot->set_robot_id( i );
-            robot->set_orientation(cl->blues[i].phi);
-            robot->set_pixel_x( cl->blues[i].x );
-            robot->set_pixel_y( cl->blues[i].y );
-            robot->set_x( reg_center3d.x );
-            robot->set_y( reg_center3d.y );
-            robot->set_height( 140.0 );
         }
+        // printf("after b34es\n");
+        count=0;
+        for(int i=0; i<12; i++)
+        {
+            if (cl->yellows[i].id>-1)
+            {
+                SSL_DetectionRobot * robot = 0;
+                if (robotlist_yellow->size() < count+1)
+                {
+                    robotlist_yellow->Add();
+                    robot = robotlist_yellow->Mutable(count);
+                }
+                else
+                {
+                    robot = robotlist_yellow->Mutable(count);
+                    robot->Clear();
+                }
+                ++count;
+                vector2d reg_img_center( cl->yellows[i].x , cl->yellows[i].y );
+                vector3d reg_center3d;
+                camera_parameters.image2field(reg_center3d,reg_img_center, 140.0 );
 
-        for(int i=0; i<2; i++){
-            SSL_DetectionRobot * robot = 0;
-            if (robotlist_yellow->size() < i+1) {
-                robotlist_yellow->Add();
-                robot = robotlist_yellow->Mutable(i);
-            } else {
-                robot = robotlist_yellow->Mutable(i);
-                robot->Clear();
+                robot->set_confidence( count );
+                robot->set_robot_id( i );
+                robot->set_orientation(cl->yellows[i].phi);
+                robot->set_pixel_x( cl->yellows[i].x );
+                robot->set_pixel_y( cl->yellows[i].y );
+                robot->set_x( reg_center3d.x );
+                robot->set_y( reg_center3d.y );
+                robot->set_height( 140.0 );
+                printf("Yellows %d coords: %f %f %f\n",robot->robot_id(),robot->x(),robot->y(),robot->orientation());
             }
-            vector2d reg_img_center( cl->yellows[i].x , cl->yellows[i].y );
-            vector3d reg_center3d;
-            camera_parameters.image2field(reg_center3d,reg_img_center, 140.0 );
-
-            robot->set_confidence( i );
-            robot->set_robot_id( i );
-            robot->set_orientation(cl->yellows[i].phi);
-            robot->set_pixel_x( cl->yellows[i].x );
-            robot->set_pixel_y( cl->yellows[i].y );
-            robot->set_x( reg_center3d.x );
-            robot->set_y( reg_center3d.y );
-            robot->set_height( 140.0 );
         }
-
-
-        /*
-		for (int i = 0; i < 4; i++){
-                        if (cl->hats[i].color == 0) {
-				SSL_DetectionRobot * robot = detection_frame->add_robots_blue();
-
-                                vector2d reg_img_center( cl->hats[i].x , cl->hats[i].y );
-                                vector3d reg_center3d;
-                                camera_parameters.image2field(reg_center3d,reg_img_center, 140.0 );
-
-                                robot->set_confidence( i );
-                                //setup robot:
-                                robot->set_x( reg_center3d.x );
-                                            robot->set_y( reg_center3d.y );
-                                            //if (_have_angle) robot->set_orientation(res.angle);
-                                            robot->set_robot_id( i );
-                                            robot->set_pixel_x( cl->hats[i].x );
-                                            robot->set_pixel_y( cl->hats[i].y );
-                                            robot->set_height( 140.0 );
-			} else {
-				SSL_DetectionRobot * robot = detection_frame->add_robots_yellow();
-
-                                vector2d reg_img_center( cl->hats[i].x , cl->hats[i].y );
-                                vector3d reg_center3d;
-                                camera_parameters.image2field(reg_center3d,reg_img_center, 140.0 );
+    }
 
 
 
-                                robot->set_confidence( i );
-                                //setup robot:
-                                            robot->set_x( reg_center3d.x );
-                                            robot->set_y( reg_center3d.y );
-                                            //if (_have_angle) robot->set_orientation(res.angle);
-                                            robot->set_robot_id( i );
-                                            robot->set_pixel_x( cl->hats[i].x );
-                                            robot->set_pixel_y( cl->hats[i].y );
-                                            robot->set_height( 140.0 );
-                        }
-		}
-                    */
+    //uchar * mat1 = img.data;
 
+    for (int i=0;i<m_c->size();++i)
+    {
+        circle(img,Point(m_c->at(i).x,m_c->at(i).y),25,Scalar(255));
+    }
+
+//    Rect rect(0,0,100,100);
+//    img(rect) = Mat::zeros(100,100,CV_8UC3);
+
+    for (int i=0;i<480;++i)
+        for (int j=0;j<640;++j)
+        {
+            source_pointer[i*source->getWidth()+j].r= mat[3*(i*640+j)+2];
+            source_pointer[i*source->getWidth()+j].g= mat[3*(i*640+j)+1];
+            source_pointer[i*source->getWidth()+j].b= mat[3*(i*640+j)+0];
         }
-		
-		
-		
+   // img1.copyTo(cl->src);
+    printf("count: %d\n",count);
+    printf("after conversion\n");
 
-	for (int i=0;i<480;++i)
-		for (int j=0;j<640;++j)
-		{
-                    /*
-                        source_pointer[i*source->getWidth()+j].r= tmp.at<Vec3b>(i,j)[2];
-                        source_pointer[i*source->getWidth()+j].g= tmp.at<Vec3b>(i,j)[1];
-                        source_pointer[i*source->getWidth()+j].b= tmp.at<Vec3b>(i,j)[0];
-                        */
-                    source_pointer[i*source->getWidth()+j].r= tmp.at<uchar>(i,j);
-                    source_pointer[i*source->getWidth()+j].g= tmp.at<uchar>(i,j);
-                    source_pointer[i*source->getWidth()+j].b= tmp.at<uchar>(i,j);
-		}
-       // delete cl;
-	return ProcessingOk;
+    return ProcessingOk;
 }
+
+Mat imageClust::Wolf(Mat img, int w, double k){
+
+    printf("start wolf\n");
+
+
+
+    Scalar S = sum(img);
+    double Smax=S[0]>S[1] ? S[0]:S[1];
+    Smax=S[2]>Smax ? S[2]:Smax;
+
+    uchar *mat=img.data;
+    int cols = img.cols;
+    int rows = img.rows;
+
+    for (int i=0; i < rows; ++i)
+        for (int j = 0; j < cols; ++j)
+        {
+            mat[3*(i*cols + j)+0] *= 2-S[0]/Smax;
+            mat[3*(i*cols + j)+1] *= 2-S[1]/Smax;
+            mat[3*(i*cols + j)+2] *= 2-S[2]/Smax;
+        }
+
+
+        cvtColor(img,img,CV_BGR2GRAY);
+
+        double minI, maxI;
+        minMaxLoc(img, &minI, &maxI);
+
+        img=(img-minI)*255/(maxI-minI);
+
+        img.convertTo(img,CV_32F);
+
+        Mat m, s;
+        Mat kernel = Mat::ones(w,w,CV_32F) / (float)(w*w);
+
+        filter2D(img, m, CV_32F, kernel);
+
+        Mat t = Mat(img.rows,img.cols,CV_32F);
+        t = img - m;
+        filter2D(t.mul(t), s, CV_32F, kernel);
+        sqrt(s,s);
+
+
+        double minS, maxS;
+        minMaxLoc(s, &minS, &maxS);
+
+        t = m+k*(s/maxS-1).mul(m-minI);
+
+        Mat binimg = (img>t & s>15);
+
+        Mat se =(Mat_<unsigned char>(4,4) << 0, 1, 1, 0,
+                                             1, 1, 1, 1,
+                                             1, 1, 1, 1,
+                                             0, 1, 1, 0);
+        morphologyEx(binimg, binimg, MORPH_OPEN, se);
+        return binimg;
+}
+
 
 void testPlugin::calibClick(){
 
@@ -245,8 +306,15 @@ void imageClust::setImg(Mat &img)
 {
     rlist.init();
     reglist.init();
+    //Mat tmp1, tmp2;
+   // src.convertTo(tmp1,CV_32FC3);
+    //img.convertTo(tmp2,CV_32FC3);
+    //((Mat)((tmp1+tmp2)/2)).convertTo(src,CV_8UC3);
+    //src=(src+img)/2;
+    //addWeighted(src,0.5,img,0.5,0.0,src);
+    src = img;
+//    gray = Wolf(img,15,-0.1);
 
-    src=img;
     gray=Mat(img.size(),CV_8UC1);
     cvtColor(img,gray,CV_BGR2GRAY);
     blur(gray,gray,Size(3,3));
@@ -297,6 +365,9 @@ string testPlugin::getName()
 
 imageClust::imageClust()
 {
+   // src = Mat::zeros(480,640,CV_8UC3);
+    //Mat::zeros()
+
     drawColors[0]=Scalar(255,0,0);
     drawColors[1]=Scalar(0,255,255);
     drawColors[2]=Scalar(0,255,0);
@@ -311,9 +382,9 @@ imageClust::imageClust()
 
     calib_colors[1][0]=0;
     calib_colors[1][1]=2;
-    calib_colors[1][2]=2;
+    calib_colors[1][2]=3;
     calib_colors[1][3]=2;
-    calib_colors[1][4]=2;
+    calib_colors[1][4]=3;
 
     calib_colors[2][0]=1;
     calib_colors[2][1]=3;
@@ -383,7 +454,7 @@ void imageClust::rle()
 		}
 	}
 	rlist.used=j;
-        printf("used: %d\n",rlist.used);
+    printf("used: %d\n",rlist.used);
 }
 
 //Выделение связных областей из rle-кодировки
@@ -466,7 +537,7 @@ void imageClust::clust()
 		j = runs[i].parent;
 		runs[i].parent = runs[j].parent;
 	}
-	
+    //printf("rle: %d\n",used);
 }
 
 //Выделение регионов
@@ -495,6 +566,7 @@ void imageClust::regions()
 			
 			if (curr.parent==i)
 			{
+               // printf("if %d\n",curr.parent);
 				runs[i].region=n;
 				
 				regions[n].first_run=i;
@@ -507,6 +579,7 @@ void imageClust::regions()
 			
 			else
 			{
+               // printf("else parent:%d\n",curr.parent);
 				parent=runs[curr.parent].region;
 				runs[i].region=parent;
 				//parent=runs[curr.parent].parent;
@@ -518,7 +591,7 @@ void imageClust::regions()
 		}
 	}
 	reglist.used=n;
-	//printf("regions: %d\n",n);
+    printf("regions1: %d\n",n);
 	
 	Region * r=new Region[100];
 	int count=0;
@@ -537,7 +610,7 @@ void imageClust::regions()
 	reglist.used=count;
 	regions=reglist.regions;
 	
-	
+    printf("regions2: %d\n",n);
 	n=reglist.used;
 	Region * final_r=new Region[n];
 	
@@ -590,7 +663,7 @@ void imageClust::regions()
         delete[] r;
 	reglist.regions=final_r;
 	reglist.used=count;
-        printf("regions: %d\n",reglist.used);
+    printf("regions: %d\n",reglist.used);
 	
 
 }
@@ -598,6 +671,7 @@ void imageClust::regions()
 //Функция для отображения найденных областей
 void imageClust::recover(Mat &src)
 {
+     printf("recover0\n");
 	uchar * mat=src.data;
 	Run curr;
 	Run * r=rlist.runs;
@@ -609,20 +683,33 @@ void imageClust::recover(Mat &src)
 	int run_n=rlist.used;
 	int y;
 	
-        for (int i=0;i<n;++i)
-	{
-		curr=r[reg[i].first_run];
-		parent=curr.parent;
-		for (int j=0;j<run_n;++j)
-		{
-			if (r[j].parent==parent)
-			{
-				y=r[j].y;
-				for (int k=r[j].x;k<r[j].x+r[j].width;++k)
-					mat[y*cols+k]=255;
-			}
-		}
-	}
+
+//        for (int i=0;i<n;++i)
+//	{
+//		curr=r[reg[i].first_run];
+//		parent=curr.parent;
+//		for (int j=0;j<run_n;++j)
+//		{
+//			if (r[j].parent==parent)
+//			{
+//				y=r[j].y;
+//				for (int k=r[j].x;k<r[j].x+r[j].width;++k)
+//                                {
+//                                    mat[3*(y*cols+k)]=255;
+//                                     mat[3*(y*cols+k)+1]=255;
+//                                      mat[3*(y*cols+k)+2]=255;
+//                                    //src.at<Scalar>(k,y)=drawColors[r[j].color];
+//                                    //src.at<Scalar>(k,y)=Scalar(255);
+//                                }
+//			}
+//		}
+//    }
+
+    printf("recover\n");
+    for (int i=0;i<n;++i)
+    {
+        circle(src,Point(reg[i].cx,reg[i].cy),5,drawColors[reg[i].color]);
+    }
 }
 
 //Определение цветов областей по готовым матрицам ковариаций
@@ -648,7 +735,7 @@ void imageClust::colors()
 		for (int i=0;i<5;++i)
 		{
 			ss<<i<<".txt";
-                        ifstream in(ss.str().c_str());
+            ifstream in(ss.str().c_str());
 			ss.str("");
 			col.at<double>(0,0)=cols[i].at<double>(0,0)-curr_reg.rgb[0];
 			col.at<double>(0,1)=cols[i].at<double>(0,1)-curr_reg.rgb[1];
@@ -665,6 +752,9 @@ void imageClust::colors()
 		{
 			regs[j].color=res_col;
 		}
+        else
+            regs[j].color=5;
+      //  printf("color: %d\n",regs[j].color);
 	}
 }
 
@@ -678,22 +768,23 @@ void imageClust::readCovs()
 		covs[i]=Mat(3,3,CV_64F);
 		cols[i]=Mat(1,3,CV_64F);
 		ss<<i<<".txt";
-                ifstream in(ss.str().c_str());
+        ifstream in(ss.str().c_str());
 		ss.str("");
 
 		in>>cols[i].at<double>(0,0)>>cols[i].at<double>(0,1)>>cols[i].at<double>(0,2);
                // printf("%d center: %f %f %f\n",i,cols[i].at<double>(0,0),cols[i].at<double>(0,1),cols[i].at<double>(0,2));
                // printf("%d cov:\n",i);
+
 		for (int k=0;k<3;++k)
-                {
-                      //  printf("\t");
-			for (int j=0;j<3;++j)
-                        {
-				in>>covs[i].at<double>(k,j);
-                               // printf("%f ",covs[i].at<double>(k,j));
-                        }
-                       // printf("\n");
-                }
+        {
+              //  printf("\t");
+            for (int j=0;j<3;++j)
+            {
+                in>>covs[i].at<double>(k,j);
+                // printf("%f ",covs[i].at<double>(k,j));
+            }
+           // printf("\n");
+        }
 	}
 }
 
@@ -701,7 +792,7 @@ bool regionCompare (Region i,Region j) { return (i.angle<j.angle); }
 
 void imageClust::invar(Hat &h)
 {
-	
+   // printf("inver starting\n");
 	Region regs[5];
 	
 	for (int i=0;i<5;++i)
@@ -737,7 +828,7 @@ void imageClust::invar(Hat &h)
 		}
 	}
 
-	double angle;
+    //double angle;
 
 	h.regs[0]=regs[cnt_no];
 
@@ -823,76 +914,137 @@ void imageClust::invar(Hat &h)
 			h.regs[tmp]=regs[i-1];
 		}
 	}
+    //printf("inver worked\n");
+}
+
+void Hat::computeId()
+{
+
+    id=(regs[1].color-2)+2*(regs[2].color-2)+4*(regs[3].color-2)+8*(regs[4].color-2);
+    id=id>11? 11:id;
+
 }
 
 void imageClust::findHats()
 {
-
+    //lock();
 	rle();
-	clust();
+    //printf("rle worked!\n");
+    clust();
+   // printf("clust worked!\n");
 	regions();
+   // printf("regions worked!\n");
 	colors();
+   // printf("colors worked!\n");
+    for (int i=0;i<12;++i)
+    {
+        blues[i].id=-1;
+        yellows[i].id=-1;
+
+    }
 
 
 
 	int n=reglist.used;
 	Region * regs=reglist.regions;
-	Run * runs=rlist.runs;
+    //Run * runs=rlist.runs;
 	double dist;
 	int count=0;
-        int blues_count=0;
-        int yellows_count=0;
+    //int blues_count=0;
+   // int yellows_count=0;
+    double cx=0;
+    double cy=0;
+    int thr=21;
 	for (int i=0;i<n;++i)
+    {
+
+        if (regs[i].color<2)
         {
-                if (regs[i].color<2)
-		{
-			Hat h;
-			count=0;
-			for (int j=0;j<n;++j)
-			{
-				dist=sqrt((regs[i].cx-regs[j].cx)*(regs[i].cx-regs[j].cx)+(regs[i].cy-regs[j].cy)*(regs[i].cy-regs[j].cy));
-				if (dist<22)
-				{
-					h.regs[count++]=regs[j];
-				}
-			}
-
-                        if (count==5)
-                        {
-                            invar(h);
-                            h.x=h.regs[0].cx;
-                            h.y=h.regs[0].cy;
-                            h.color=h.regs[0].color;
-
-                            double dy=(h.regs[3].cy-h.regs[4].cy - h.regs[1].cy+h.regs[2].cy)/2;
-                            double dx=-(h.regs[3].cx-h.regs[4].cx - h.regs[1].cx+h.regs[2].cx)/2;
-                            h.phi=atan2(dy,dx);
-                           // printf("phi: %f\n",h.phi);
-
-                            if (h.color==0)
-                                blues[blues_count++]=h;
-                            else
-                                yellows[yellows_count++]=h;
-                            //hats[hats_count++]=h;
-
-                            line(src,Point(h.regs[1].cx,h.regs[1].cy),Point(h.regs[2].cx,h.regs[2].cy),Scalar(0,regs[i].color*255,255),2);
-                            circle(src,Point(h.regs[2].cx,h.regs[2].cy),5,Scalar(0,0,255),2);
-                            line(src,Point(h.regs[3].cx,h.regs[3].cy),Point(h.regs[4].cx,h.regs[4].cy),Scalar(0,regs[i].color*255,255),2);
-                        }
-
-			
-		}
-            if (regs[i].color==4)
+           // printf("got it!\n");
+            Hat h;
+            count=0;
+            h.regs[count++]=regs[i];
+            //circle(src,Point(h.regs[0].cx,h.regs[0].cy),1,Scalar(255,255,255),2);
+            circle(src,Point(h.regs[0].cx,h.regs[0].cy),thr,drawColors[regs[i].color],1);
+            cx=0;
+            cy=0;
+            for (int j=0;j<n;++j)
             {
-                ball.x=regs[i].cx;
-                ball.y=regs[i].cy;
+                dist=sqrt((regs[i].cx-regs[j].cx)*(regs[i].cx-regs[j].cx)+(regs[i].cy-regs[j].cy)*(regs[i].cy-regs[j].cy));
+               // printf("%d-%d color: %d dist: %f\n",i,j,regs[j].color,dist);
+
+                if (dist<thr && (regs[j].color==2 || regs[j].color==3) && i!=j && count<5)
+                {
+                   // printf("%d %d %d\n",count++,i,j);
+                    h.regs[count++]=regs[j];
+                    cx+=regs[j].cx;
+                    cy+=regs[j].cy;
+                  //  printf("added %d\n",j);
+                }
             }
+
+            cx/=4;
+            cy/=4;
+            circle(src,Point(cx,cy),1,drawColors[regs[i].color],1);
+
+           // printf("after dist\n");
+
+            if (count==5)
+            {
+
+                invar(h);
+                h.x=h.regs[0].cx;
+                h.y=h.regs[0].cy;
+                h.color=h.regs[0].color;
+
+                double dy=(h.regs[3].cy-h.regs[4].cy - h.regs[1].cy+h.regs[2].cy)/2;
+                double dx=-(h.regs[3].cx-h.regs[4].cx - h.regs[1].cx+h.regs[2].cx)/2;
+                h.phi=atan2(dy,dx);
+               // printf("phi: %f\n",h.phi);
+                h.computeId();
+                printf("%d color id: %d\n",h.color,h.id);
+                if (h.color==0)
+                    blues[h.id]=h;
+                else
+                    yellows[h.id]=h;
+                //hats[hats_count++]=h;
+
+                line(src,Point(h.regs[1].cx,h.regs[1].cy),Point(h.regs[2].cx,h.regs[2].cy),Scalar(0,regs[i].color*255,255),2);
+                circle(src,Point(h.regs[2].cx,h.regs[2].cy),5,Scalar(0,0,255),2);
+                line(src,Point(h.regs[3].cx,h.regs[3].cy),Point(h.regs[4].cx,h.regs[4].cy),Scalar(0,regs[i].color*255,255),2);
+            }
+
+
+       }
+        if (regs[i].color==4)
+        {
+            ball.x=regs[i].cx;
+            ball.y=regs[i].cy;
         }
+    }
+    //imwrite("img.png",src);
+    printf("findhats worked!\n");
+     printf("yo!\n");
+
+  // unlock();
 }
 
 
 void imageClust::calibrate()
 {
+    //imwrite("out.png",src);
+//        rle();
+//        printf("calib rle worked!\n");
+//        clust();
+//        printf("calib clust worked!\n");
+//        regions();
+//        printf("calib regions worked!\n");
+
+    //printf("-*-*-*-*-*-*calib worked lol!-*-*-*-*-*-*\n");
+       // system("pause");
+
+
+        // --------------------------------- //
         int src_cols=src.cols;
         uchar * mat=src.data;
 
@@ -900,6 +1052,7 @@ void imageClust::calibrate()
         Run * runs=rlist.runs;
 
         int n=reglist.used;
+        printf("calib regs: %d\n",n);
         double cx=0;
         double cy=0;
         double dist=200;
@@ -915,8 +1068,8 @@ void imageClust::calibrate()
 
         cx/=n;
         cy/=n;
-
-        circle(src,Point(cx,cy),3,Scalar(0,255,0),-1);
+        printf("%f %f\n",cx,cy);
+        //circle(src,Point(cx,cy),3,Scalar(0,255,0),-1);
 
         for (int i=0;i<n;++i)
         {
@@ -930,8 +1083,8 @@ void imageClust::calibrate()
 
         cx=regs[ball].cx;
         cy=regs[ball].cy;
-
-        //circle(src,Point(regs[ball].cx,regs[ball].cy),5,Scalar(0,0,255),-1);
+        printf("%f %f\n",cx,cy);
+//        //circle(src,Point(regs[ball].cx,regs[ball].cy),5,Scalar(0,0,255),-1);
         Hat hats[4];
         for (int i=0;i<n;++i)
         {
@@ -945,21 +1098,30 @@ void imageClust::calibrate()
                         if (regs[i].cy-cy<0)
                                 hats[1].add(regs[i]);
                         else
+                        {
+                            printf("2 %d\n",i);
                                 hats[2].add(regs[i]);
+                        }
         }
+
         int parent;
         for (int i=0;i<4;++i)
-        {
+        {printf("h %d %d\n",i,hats[i].used);
+
                 invar(hats[i]);
                 for (int j=0;j<5;++j)
                 {
+//                    printf("i: %d j: %d\n",i,j);
                         parent=runs[hats[i].regs[j].first_run].parent;
                         for (int k=0;k<rlist.used;++k)
                         {
+//                            printf("%d %d\n",rlist.used,k);
                                 if (runs[k].parent==parent)
                                 {
+//                                    printf("%d %d %d \n",rlist.used,i,j);
                                         for (int s=runs[k].x;s<runs[k].x+runs[k].width;++s)
                                         {
+
                                                 if (checkColor(calib_colors[i][j],mat+3*(runs[k].y*src_cols+s)))
                                                         colorset[calib_colors[i][j]].add(mat+3*(runs[k].y*src_cols+s));
                                         }
@@ -967,23 +1129,25 @@ void imageClust::calibrate()
                         }
                 }
         }
+      //  system("pause");
+        printf("after colorcheck\n");
 
         parent=runs[regs[ball].first_run].parent;
         for (int k=0;k<rlist.used;++k)
         {
-                if (runs[k].parent==parent)
+            if (runs[k].parent==parent)
+            {
+                for (int s=runs[k].x;s<runs[k].x+runs[k].width;++s)
                 {
-                        for (int s=runs[k].x;s<runs[k].x+runs[k].width;++s)
-                        {
-                                if (checkColor(4,mat+3*(runs[k].y*src_cols+s)))
-                                        colorset[4].add(mat+3*(runs[k].y*src_cols+s));
-                        }
+                    if (checkColor(4,mat+3*(runs[k].y*src_cols+s)))
+                        colorset[4].add(mat+3*(runs[k].y*src_cols+s));
                 }
+            }
         }
 
         int k=0;
         for (int i=0;i<colorset[k].used;++i)
-                printf("%d blue color: %d %d %d\n",i,colorset[k].bgr[i][0],colorset[k].bgr[i][1],colorset[k].bgr[i][2]);
+            printf("%d blue color: %d %d %d\n",i,colorset[k].bgr[i][0],colorset[k].bgr[i][1],colorset[k].bgr[i][2]);
 
 
 
@@ -1001,13 +1165,13 @@ void imageClust::calibrate()
                 int color_size=colorset[j].used;
                 for (int i=0;i<color_size;++i)
                 {
-                        color_ptr[3*i]=colorset[j].bgr[i][0];
-                        color_ptr[3*i+1]=colorset[j].bgr[i][1];
-                        color_ptr[3*i+2]=colorset[j].bgr[i][2];
+                    color_ptr[3*i]=colorset[j].bgr[i][0];
+                    color_ptr[3*i+1]=colorset[j].bgr[i][1];
+                    color_ptr[3*i+2]=colorset[j].bgr[i][2];
 
-                        bgr[0]+=colorset[j].bgr[i][0];
-                        bgr[1]+=colorset[j].bgr[i][1];
-                        bgr[2]+=colorset[j].bgr[i][2];
+                    bgr[0]+=colorset[j].bgr[i][0];
+                    bgr[1]+=colorset[j].bgr[i][1];
+                    bgr[2]+=colorset[j].bgr[i][2];
                 }
                 cols[j].at<double>(0,0)=bgr[0]/=color_size;
                 cols[j].at<double>(0,1)=bgr[1]/=color_size;
@@ -1024,7 +1188,7 @@ void imageClust::calibrate()
                 for (int i=0;i<3;++i)
                 {
                     for (int k=0;k<3;++k)
-                        out<<covs[j].at<double>(i,j)<<" ";
+                        out<<covs[j].at<double>(i,k)<<" ";
                     out<<"\n";
                 }
 
@@ -1043,8 +1207,17 @@ void imageClust::calibrate()
 
 bool imageClust::checkColor(int num,uchar * color)
 {
-        for (int i=0;i<colorset[num].used;++i)
-                if (colorset[num].bgr[i][0]==color[0] && colorset[num].bgr[i][1]==color[1] && colorset[num].bgr[i][2]==color[2])
-                        return false;
+
+ //   bool hack=0;
+ //   printf("check %d %d\n",num,colorset[num].used);
+    for (int i=0;i<colorset[num].used;++i)
+    {
+//        printf("%d checkcolro!\n",i);
+        if (colorset[num].bgr[i][0]==color[0] && colorset[num].bgr[i][1]==color[1] && colorset[num].bgr[i][2]==color[2])
+        {
+            return false;
+        }
+    }
+
         return true;
 }
